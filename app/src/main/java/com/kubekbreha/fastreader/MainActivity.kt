@@ -4,11 +4,14 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.widget.TextView
-import com.kubekbreha.fastreader.R.id.main_text_view
 
 class MainActivity : AppCompatActivity() {
 
     var mainTextView : TextView? = null
+
+    var testBook: String = "Sure. In this tutorial, I’ll show how to declare, populate, and iterate through a Java String array, including the Java 5 for loop syntax. Because creating a String array is just like creating and using any other Java object array, these examples also work as more generic object array examples."
+    val testBookArray = testBook.split(" ").toTypedArray()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         handler.postDelayed(object : Runnable {
             var i = 0
             override fun run() {
-                replaceTex(i)
+                replaceTex(testBookArray[i])
                 i++
 
                 handler.postDelayed(this, 500) //added this line
@@ -29,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun replaceTex(i: Int){
-        mainTextView!!.text = i.toString()
+    fun replaceTex(word: String){
+        mainTextView!!.text = word
     }
 }
