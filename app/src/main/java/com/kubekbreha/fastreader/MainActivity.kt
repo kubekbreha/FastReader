@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
     }
 
     override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-        activity_main_currentSpeed_textView.text = (500+progress).toString() + " W/M (fake)"
+        activity_main_currentSpeed_textView.text = delayMilis.toString() + " (milis between words)"
         delayMilis = 1200L - progress
 
     }
