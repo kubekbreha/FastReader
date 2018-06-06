@@ -1,5 +1,6 @@
 package com.kubekbreha.fastreader
 
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -8,6 +9,17 @@ import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
+import java.io.File
+import com.itextpdf.text.pdf.parser.PdfTextExtractor
+import com.itextpdf.text.pdf.PdfReader
+import android.content.Intent
+import android.os.Environment
+import android.os.Environment.getExternalStorageDirectory
+
+
+
+
+
 
 class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.OnClickListener {
 
@@ -24,13 +36,12 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
             "tutorial, I’ll show how to declare, populate, and iterate through a Java String array, "
     private val testBookArray = testBook.split(" ").toTypedArray()
 
-    private var delayMilis : Long = 1500
+    private var delayMilis: Long = 1500
     private var wordCounter = 0
     private var running = false
 
     private var handler: Handler? = null
     private var handlerTask: Runnable? = null
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +53,9 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
         activity_main_plusTen_button.setOnClickListener(this)
         activity_main_minusTen_button.setOnClickListener(this)
         activity_main_restart_imageButton.setOnClickListener(this)
+
+
+
 
 
         handler = Handler()
@@ -57,7 +71,6 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
                 Log.d("main", delayMilis.toString())
             }
         }
-
 
 
     }
@@ -78,13 +91,13 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
                 Toast.makeText(this, running.toString(), Toast.LENGTH_SHORT).show()
             }
             R.id.activity_main_plusTen_button -> {
-                if(wordCounter <= testBookArray.size-11)
+                if (wordCounter <= testBookArray.size - 11)
                     wordCounter += 10
                 else
                     wordCounter = testBookArray.size - 1
             }
             R.id.activity_main_minusTen_button -> {
-                if(wordCounter >= 10)
+                if (wordCounter >= 10)
                     wordCounter -= 10
                 else
                     wordCounter = 0
@@ -117,3 +130,6 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
         activity_main_textView.text = word
     }
 }
+
+
+
