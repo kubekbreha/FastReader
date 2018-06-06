@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
         setContentView(R.layout.activity_main)
 
         activity_main_seekBar.setOnSeekBarChangeListener(this)
-        activity_main_pause_button.setOnClickListener(this)
+        activity_main_running_button.setOnClickListener(this)
 
 
         handler = Handler()
@@ -47,13 +47,15 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.activity_main_pause_button -> {
+            R.id.activity_main_running_button -> {
                 if (running) {
                     handler!!.removeCallbacks(handlerTask)
                     running = false
+                    activity_main_running_button.setImageResource(R.drawable.ic_play)
                 } else {
                     handler!!.post(handlerTask)
                     running = true
+                    activity_main_running_button.setImageResource(R.drawable.ic_pause)
                 }
                 Toast.makeText(this, running.toString(), Toast.LENGTH_SHORT).show()
             }
