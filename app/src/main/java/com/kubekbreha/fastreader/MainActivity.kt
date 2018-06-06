@@ -1,40 +1,23 @@
 package com.kubekbreha.fastreader
 
-import android.net.Uri
-import android.support.v7.app.AppCompatActivity
+import android.content.res.TypedArray
 import android.os.Bundle
 import android.os.Handler
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
+import com.github.mertakdut.Reader
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
-import com.itextpdf.text.pdf.parser.PdfTextExtractor
-import com.itextpdf.text.pdf.PdfReader
-import android.content.Intent
-import android.os.Environment
-import android.os.Environment.getExternalStorageDirectory
-
-
-
-
+import java.io.FileOutputStream
 
 
 class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.OnClickListener {
 
-    private var testBook: String = "Sure. In this tutorial, I’ll show how to declare, populate, and" +
-            " iterate through a Java String array, including the Java 5 for loop syntax. Because " +
-            "creating a String array is just like creating and using any other Java object array," +
-            " these examples also work as more generic object array examples. Sure. In this tutorial," +
-            " I’ll show how to declare, populate, and iterate through a" +
-            "Sure. In this tutorial, I’ll show how to declare, populate, and iterate through a Java String array, " +
-            " Java String array, Sure. In this tutorial, I’ll show how to declare, populate, and " +
-            "iterate through a Java String array, Sure. In this tutorial, I’ll show how to " +
-            "declare, populate, and iterate through a Java String array, Sure. In this tutorial, I’ll " +
-            "show how to declare, populate, and iterate through a Java String array, Sure. In this " +
-            "tutorial, I’ll show how to declare, populate, and iterate through a Java String array, "
-    private val testBookArray = testBook.split(" ").toTypedArray()
+
+    private var testBookArray = arrayOf<String>()
 
     private var delayMilis: Long = 1500
     private var wordCounter = 0
@@ -54,9 +37,24 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
         activity_main_minusTen_button.setOnClickListener(this)
         activity_main_restart_imageButton.setOnClickListener(this)
 
+        val sampleFile = getFileFromAssets("test1.epub")
+        sampleFile.getPath()
 
 
+        val reader = Reader()
+        reader.setMaxContentPerSection(1000) // Max string length for the current page.
+        reader.setIsIncludingTextContent(true) // Optional, to return the tags-excluded version.
+        reader.setFullContent(sampleFile.getPath()) // Must call before readSection.
 
+        val bookSection = reader.readSection(0)
+        val sectionContent = bookSection.getSectionContent() // Returns content as html.
+        val sectionTextContent = bookSection.getSectionTextContent() // Excludes html tags.
+
+
+        Log.e("BOOK", sectionContent)
+        testBookArray = sectionTextContent.split(" ").toTypedArray()
+
+        
 
         handler = Handler()
         handlerTask = object : Runnable {
@@ -128,6 +126,30 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
 
     fun replaceTex(word: String) {
         activity_main_textView.text = word
+    }
+
+
+    fun getFileFromAssets(fileName: String): File {
+
+        val file = File(cacheDir.toString() + "/" + fileName)
+
+        if (!file.exists())
+            try {
+
+                val `is` = assets.open(fileName)
+                val size = `is`.available()
+                val buffer = ByteArray(size)
+                `is`.read(buffer)
+                `is`.close()
+
+                val fos = FileOutputStream(file)
+                fos.write(buffer)
+                fos.close()
+            } catch (e: Exception) {
+                throw RuntimeException(e)
+            }
+
+        return file
     }
 }
 
