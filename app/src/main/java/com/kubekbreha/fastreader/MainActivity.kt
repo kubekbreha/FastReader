@@ -3,6 +3,7 @@ package com.kubekbreha.fastreader
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.widget.SeekBar
 import android.widget.TextView
@@ -11,14 +12,26 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.OnClickListener {
 
-    private var testBook: String = "Sure. In this tutorial, I’ll show how to declare, populate, and iterate through a Java String array, including the Java 5 for loop syntax. Because creating a String array is just like creating and using any other Java object array, these examples also work as more generic object array examples."
+    private var testBook: String = "Sure. In this tutorial, I’ll show how to declare, populate, and" +
+            " iterate through a Java String array, including the Java 5 for loop syntax. Because " +
+            "creating a String array is just like creating and using any other Java object array," +
+            " these examples also work as more generic object array examples. Sure. In this tutorial," +
+            " I’ll show how to declare, populate, and iterate through a" +
+            "Sure. In this tutorial, I’ll show how to declare, populate, and iterate through a Java String array, " +
+            " Java String array, Sure. In this tutorial, I’ll show how to declare, populate, and " +
+            "iterate through a Java String array, Sure. In this tutorial, I’ll show how to " +
+            "declare, populate, and iterate through a Java String array, Sure. In this tutorial, I’ll " +
+            "show how to declare, populate, and iterate through a Java String array, Sure. In this " +
+            "tutorial, I’ll show how to declare, populate, and iterate through a Java String array, "
     private val testBookArray = testBook.split(" ").toTypedArray()
 
+    private var delayMilis : Long = 1500
     private var wordCounter = 0
     private var running = false
 
     private var handler: Handler? = null
     private var handlerTask: Runnable? = null
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +49,9 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
                 if (testBookArray.size - 1 > wordCounter) {
                     wordCounter++
                 }
-                handler!!.postDelayed(this, 500)
+                handler!!.postDelayed(this, delayMilis)
+
+                Log.d("main", delayMilis.toString())
             }
         }
 
@@ -68,7 +83,9 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
     }
 
     override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-        activity_main_currentSpeed_textView.text = progress.toString() + "W/M"
+        activity_main_currentSpeed_textView.text = (500+progress).toString() + " W/M (fake)"
+        delayMilis = 1200L - progress
+
     }
 
     override fun onStartTrackingTouch(seekBar: SeekBar?) {}
