@@ -6,7 +6,6 @@ import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.SeekBar
-import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -39,7 +38,10 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
         setContentView(R.layout.activity_main)
 
         activity_main_seekBar.setOnSeekBarChangeListener(this)
-        activity_main_running_button.setOnClickListener(this)
+        activity_main_running_imageButton.setOnClickListener(this)
+        activity_main_plusTen_button.setOnClickListener(this)
+        activity_main_minusTen_button.setOnClickListener(this)
+        activity_main_restart_imageButton.setOnClickListener(this)
 
 
         handler = Handler()
@@ -51,6 +53,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
                 }
                 handler!!.postDelayed(this, delayMilis)
 
+                activity_main_currentWord_textView.text = wordCounter.toString()
                 Log.d("main", delayMilis.toString())
             }
         }
@@ -62,17 +65,34 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.activity_main_running_button -> {
+            R.id.activity_main_running_imageButton -> {
                 if (running) {
                     handler!!.removeCallbacks(handlerTask)
                     running = false
-                    activity_main_running_button.setImageResource(R.drawable.ic_play)
+                    activity_main_running_imageButton.setImageResource(R.drawable.ic_play)
                 } else {
                     handler!!.post(handlerTask)
                     running = true
-                    activity_main_running_button.setImageResource(R.drawable.ic_pause)
+                    activity_main_running_imageButton.setImageResource(R.drawable.ic_pause)
                 }
                 Toast.makeText(this, running.toString(), Toast.LENGTH_SHORT).show()
+            }
+            R.id.activity_main_plusTen_button -> {
+                if(wordCounter <= testBookArray.size-11)
+                    wordCounter += 10
+                else
+                    wordCounter = testBookArray.size - 1
+            }
+            R.id.activity_main_minusTen_button -> {
+                if(wordCounter >= 10)
+                    wordCounter -= 10
+                else
+                    wordCounter = 0
+
+
+            }
+            R.id.activity_main_restart_imageButton -> {
+                wordCounter = 0
             }
 
             else -> {

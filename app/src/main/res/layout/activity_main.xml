@@ -6,6 +6,15 @@
     android:background="@color/colorPrimary"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/activity_main_currentWord_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        android:layout_marginTop="120dp"
+        android:layout_marginStart="40dp"/>
+
 
     <Button
         android:id="@+id/activity_main_minusTen_button"
@@ -79,8 +88,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="51dp"
-        android:text="500 W/M"
+        android:layout_marginBottom="64dp"
+        android:text="1200 (milis between words)"
         android:textColor="@color/colorAccent"
         android:textSize="16sp"
         android:textStyle="bold" />
