@@ -1,23 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimary"
+    tools:context=".MainActivity">
+
+
+    <Button
+        android:id="@+id/activity_main_minusTen_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignEnd="@+id/activity_main_running_imageButton"
+        android:layout_marginEnd="72dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/colorPrimary"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="-10"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold" />
 
 
     <ImageButton
-        android:id="@+id/activity_main_running_button"
+        android:id="@+id/activity_main_running_imageButton"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/ic_play"
-        android:background="@color/colorPrimary"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
+        android:background="@color/colorPrimary"
         android:clickable="true"
-        android:focusable="true" />
+        android:focusable="true"
+        android:src="@drawable/ic_play" />
+
+
+    <Button
+        android:id="@+id/activity_main_plusTen_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignStart="@+id/activity_main_running_imageButton"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/colorPrimary"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="+10"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold" />
+
+
+    <ImageButton
+        android:id="@+id/activity_main_restart_imageButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignTop="@+id/activity_main_running_imageButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:background="@color/colorPrimary"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_restart" />
 
 
     <TextView
@@ -27,9 +69,9 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:paddingBottom="80dp"
-        android:textSize="40sp"
         android:textColor="@color/colorAccent"
-        android:textStyle="bold"/>
+        android:textSize="40sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/activity_main_currentSpeed_textView"
@@ -39,9 +81,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="51dp"
         android:text="500 W/M"
-        android:textSize="16sp"
         android:textColor="@color/colorAccent"
-        android:textStyle="bold"/>
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <SeekBar
         android:id="@+id/activity_main_seekBar"
@@ -51,7 +93,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
         android:max="1150" />
-
 
 
 </RelativeLayout>
