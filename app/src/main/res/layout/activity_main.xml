@@ -7,15 +7,52 @@
     tools:context=".MainActivity"
     android:background="@color/colorPrimary">
 
+
+    <ImageButton
+        android:id="@+id/activity_main_pause_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_pause"
+        android:background="@color/colorPrimary"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:clickable="true"
+        android:focusable="true" />
+
+
     <TextView
-        android:id="@+id/main_text_view"
+        android:id="@+id/activity_main_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="Hello World!"
+        android:paddingBottom="80dp"
+        android:text="example"
         android:textSize="40sp"
         android:textColor="@color/colorAccent"
         android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/activity_main_currentSpeed_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="51dp"
+        android:text="000 W/M"
+        android:textSize="16sp"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"/>
+
+    <SeekBar
+        android:id="@+id/activity_main_seekBar"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:max="1500" />
+
+
 
 </RelativeLayout>
