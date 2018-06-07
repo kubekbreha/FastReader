@@ -26,7 +26,7 @@
     </style>
 
     <style name="itemTextStyle.AppTheme" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
-        <item name="android:textColor">@drawable/color_item_popup</item>
+        <item name="android:textColor">@drawable/color_popup_text</item>
         <item name="android:textSize">@dimen/popup_text_size</item>
     </style>
 

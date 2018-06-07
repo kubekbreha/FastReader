@@ -1,7 +1,6 @@
 package com.kubekbreha.fastreader
 
 import android.content.Intent
-import android.content.res.TypedArray
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
@@ -11,7 +10,6 @@ import android.view.Gravity
 import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
-import com.github.mertakdut.Reader
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 import java.io.FileOutputStream
@@ -19,15 +17,21 @@ import java.io.FileOutputStream
 
 class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.OnClickListener {
 
-
+    //array of words
     private var testBookArray = arrayOf<String>()
 
     private var delayMilis: Long = 1500
     private var wordCounter = 0
     private var running = false
 
+    //variables for BookReader
     private var handler: Handler? = null
     private var handlerTask: Runnable? = null
+    private val epubBookReader = com.kubekbreha.fastreader.bookReader.EpubBookReader()
+
+    //range variables for book reader
+    private val charsPerPage: Int = 1000
+    private var currentSection: Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,25 +46,12 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
         activity_main_restart_imageButton.setOnClickListener(this)
         activity_main_dots_button.setOnClickListener(this)
 
-        //get book file
-        val sampleFile = getFileFromAssets("test1.epub")
-        sampleFile.getPath()
-
-        //read book context
-        val reader = Reader()
-        reader.setMaxContentPerSection(1000) // Max string length for the current page.
-        reader.setIsIncludingTextContent(true) // Optional, to return the tags-excluded version.
-        reader.setFullContent(sampleFile.getPath()) // Must call before readSection.
-        val bookSection = reader.readSection(0)
-        val sectionContent = bookSection.getSectionContent() // Returns content as html.
-        val sectionTextContent = bookSection.getSectionTextContent() // Excludes html tags.
+        //get array form book
+        testBookArray = epubBookReader.getArrayOfWordsInBook(getFileFromAssets("test1.epub"),
+                charsPerPage, 0)
 
 
-        Log.e("BOOK", sectionContent)
-        Log.e("BOOK", sectionTextContent)
-        testBookArray = sectionTextContent.split(" ").toTypedArray()
-
-
+        //timer which schedule delay between words
         handler = Handler()
         handlerTask = object : Runnable {
             override fun run() {
@@ -72,9 +63,14 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
                 activity_main_currentWord_textView.text = wordCounter.toString()
             }
         }
+
     }
 
 
+
+    /**
+     * On click listeners. -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+     */
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.activity_main_running_imageButton -> {
@@ -96,7 +92,6 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
                 else
                     wordCounter = testBookArray.size - 1
                 activity_main_currentWord_textView.text = wordCounter.toString()
-
             }
 
             R.id.activity_main_minusTen_button -> {
@@ -105,8 +100,6 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
                 else
                     wordCounter = 0
                 activity_main_currentWord_textView.text = wordCounter.toString()
-
-
             }
 
             R.id.activity_main_restart_imageButton -> {
@@ -136,7 +129,6 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
                         else -> false
                     }
                 }
-
                 popupMenu.inflate(R.menu.menu_dots)
                 try {
                     val fieldMPopup = PopupMenu::class.java.getDeclaredField("mPopup")
@@ -155,33 +147,33 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
             else -> {
             }
         }
-
-
     }
 
+
+    /**
+     * SeekBar functions.-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+     */
     override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
         activity_main_currentSpeed_textView.text = delayMilis.toString() + " (milis between words)"
         delayMilis = 1200L - progress
-
     }
 
     override fun onStartTrackingTouch(seekBar: SeekBar?) {}
-
     override fun onStopTrackingTouch(seekBar: SeekBar?) {}
 
 
+    /**
+     * My functions. -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+     */
     fun replaceTex(word: String) {
         activity_main_textView.text = word
     }
 
 
     fun getFileFromAssets(fileName: String): File {
-
         val file = File(cacheDir.toString() + "/" + fileName)
-
         if (!file.exists())
             try {
-
                 val `is` = assets.open(fileName)
                 val size = `is`.available()
                 val buffer = ByteArray(size)
@@ -194,9 +186,10 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
             } catch (e: Exception) {
                 throw RuntimeException(e)
             }
-
         return file
     }
+
+
 }
 
 
