@@ -120,13 +120,16 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
                     when (item.itemId) {
                         R.id.settings -> {
                             Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show()
-//                        val intent = Intent(this, SettingsActivity::class.java)
-//                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-//                        startActivity(intent)
+                            val intent = Intent(this, SettingsActivity::class.java)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                            startActivity(intent)
                             true
                         }
                         R.id.library -> {
                             Toast.makeText(this, "Books", Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this, LibraryActivity::class.java)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                            startActivity(intent)
                             true
                         }
 
