@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
         Log.e("BOOK", sectionContent)
         testBookArray = sectionTextContent.split(" ").toTypedArray()
 
-        
+
 
         handler = Handler()
         handlerTask = object : Runnable {
