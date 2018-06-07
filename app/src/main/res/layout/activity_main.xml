@@ -6,6 +6,19 @@
     android:background="@color/colorPrimary"
     tools:context=".MainActivity">
 
+
+    <ImageButton
+        android:id="@+id/activity_main_dots_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="8dp"
+        android:background="@color/colorPrimary"
+        android:padding="4dp"
+        android:src="@drawable/ic_more_vert" />
+
+
+
     <TextView
         android:id="@+id/activity_main_currentWord_textView"
         android:layout_width="wrap_content"
