@@ -1,10 +1,13 @@
 package com.kubekbreha.fastreader
 
+import android.content.Intent
 import android.content.res.TypedArray
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.PopupMenu
 import android.util.Log
+import android.view.Gravity
 import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
@@ -31,29 +34,31 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //buttons listeners
         activity_main_seekBar.setOnSeekBarChangeListener(this)
         activity_main_running_imageButton.setOnClickListener(this)
         activity_main_plusTen_button.setOnClickListener(this)
         activity_main_minusTen_button.setOnClickListener(this)
         activity_main_restart_imageButton.setOnClickListener(this)
+        activity_main_dots_button.setOnClickListener(this)
 
+        //get book file
         val sampleFile = getFileFromAssets("test1.epub")
         sampleFile.getPath()
 
-
+        //read book context
         val reader = Reader()
         reader.setMaxContentPerSection(1000) // Max string length for the current page.
         reader.setIsIncludingTextContent(true) // Optional, to return the tags-excluded version.
         reader.setFullContent(sampleFile.getPath()) // Must call before readSection.
-
         val bookSection = reader.readSection(0)
         val sectionContent = bookSection.getSectionContent() // Returns content as html.
         val sectionTextContent = bookSection.getSectionTextContent() // Excludes html tags.
 
 
         Log.e("BOOK", sectionContent)
+        Log.e("BOOK", sectionTextContent)
         testBookArray = sectionTextContent.split(" ").toTypedArray()
-
 
 
         handler = Handler()
@@ -64,13 +69,9 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
                     wordCounter++
                 }
                 handler!!.postDelayed(this, delayMilis)
-
                 activity_main_currentWord_textView.text = wordCounter.toString()
-                Log.d("main", delayMilis.toString())
             }
         }
-
-
     }
 
 
@@ -88,22 +89,64 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
                 }
                 Toast.makeText(this, running.toString(), Toast.LENGTH_SHORT).show()
             }
+
             R.id.activity_main_plusTen_button -> {
                 if (wordCounter <= testBookArray.size - 11)
                     wordCounter += 10
                 else
                     wordCounter = testBookArray.size - 1
+                activity_main_currentWord_textView.text = wordCounter.toString()
+
             }
+
             R.id.activity_main_minusTen_button -> {
                 if (wordCounter >= 10)
                     wordCounter -= 10
                 else
                     wordCounter = 0
+                activity_main_currentWord_textView.text = wordCounter.toString()
 
 
             }
+
             R.id.activity_main_restart_imageButton -> {
                 wordCounter = 0
+                activity_main_currentWord_textView.text = wordCounter.toString()
+            }
+
+            R.id.activity_main_dots_button -> {
+                val popupMenu = PopupMenu(this, activity_main_dots_button, Gravity.END)
+                popupMenu.setOnMenuItemClickListener { item ->
+                    when (item.itemId) {
+                        R.id.settings -> {
+                            Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show()
+//                        val intent = Intent(this, SettingsActivity::class.java)
+//                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                        startActivity(intent)
+                            true
+                        }
+                        R.id.library -> {
+                            Toast.makeText(this, "Books", Toast.LENGTH_SHORT).show()
+                            true
+                        }
+
+                        else -> false
+                    }
+                }
+
+                popupMenu.inflate(R.menu.menu_dots)
+                try {
+                    val fieldMPopup = PopupMenu::class.java.getDeclaredField("mPopup")
+                    fieldMPopup.isAccessible = true
+                    val mPopup = fieldMPopup.get(popupMenu)
+                    mPopup.javaClass.getDeclaredMethod("setForceShowIcon", Boolean::class.java)
+                            .invoke(mPopup, true)
+                } catch (e: Exception) {
+                    Log.e("Main", "Error showing icon menu, ", e)
+                } finally {
+                    popupMenu.show()
+                }
+                //popupMenu.show()
             }
 
             else -> {

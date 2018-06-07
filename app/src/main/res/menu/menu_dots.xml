@@ -7,7 +7,7 @@
         android:title="Settings" />
 
     <item
-        android:id="@+id/help"
+        android:id="@+id/library"
         android:icon="@drawable/ic_library_books"
         android:title="Library" />
 
