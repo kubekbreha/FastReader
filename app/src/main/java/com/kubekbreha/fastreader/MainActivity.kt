@@ -11,7 +11,6 @@ import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
-import nl.siegmann.epublib.epub.EpubReader
 import java.io.*
 
 
@@ -31,7 +30,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
 
     //range variables for book reader
     private val charsPerPage: Int = 1000
-    private var currentSection: Int = 240
+    private var currentSection: Int = 0
     private var charsCount: Int = 0
 
 
@@ -199,19 +198,6 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
         return file
     }
 
-
-
-    fun getPagesSize(){
-
-        val epubReader = EpubReader()
-        val book = epubReader.readEpub(FileInputStream(getFileFromAssets("test1.epub")))
-
-        //Log.d( "BOOKCONTENT", book.contents.toString())
-        activity_main_currentWord_textView.text = book.contents.toString()
-
-
-
-    }
 
 
 }
