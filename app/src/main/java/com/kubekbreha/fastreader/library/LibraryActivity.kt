@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager
 import com.kubekbreha.fastreader.R
@@ -14,8 +15,6 @@ import java.util.regex.Pattern
 
 
 class LibraryActivity : AppCompatActivity() {
-
-    lateinit var infiniteCycleViewPager: HorizontalInfiniteCycleViewPager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,24 +30,17 @@ class LibraryActivity : AppCompatActivity() {
                     .start()
         }
 
-        val horizontalInfiniteCycleViewPager = findViewById(R.id.activity_library_view_pager) as HorizontalInfiniteCycleViewPager
+        val horizontalInfiniteCycleViewPager = findViewById<HorizontalInfiniteCycleViewPager>(R.id.activity_library_view_pager)
         horizontalInfiniteCycleViewPager.adapter = HorizontalPagerAdapter(this, false)
 
-        //        horizontalInfiniteCycleViewPager.setScrollDuration(400);
-        //        horizontalInfiniteCycleViewPager.setPageDuration(1000);
-        //        horizontalInfiniteCycleViewPager.setInterpolator(
-        //                AnimationUtils.loadInterpolator(getContext(), android.R.anim.overshoot_interpolator)
-        //        );
-        //        horizontalInfiniteCycleViewPager.setMediumScaled(false);
-        //        horizontalInfiniteCycleViewPager.setMaxPageScale(0.8F);
-        //        horizontalInfiniteCycleViewPager.setMinPageScale(0.5F);
-        //        horizontalInfiniteCycleViewPager.setCenterPageScaleOffset(30.0F);
-        //        horizontalInfiniteCycleViewPager.setMinPageScaleOffset(5.0F);
-        //        horizontalInfiniteCycleViewPager.setOnInfiniteCyclePageTransformListener();
-
-        //        horizontalInfiniteCycleViewPager.setCurrentItem(
-        //                horizontalInfiniteCycleViewPager.getRealItem() + 1
-        //        );
+        horizontalInfiniteCycleViewPager.scrollDuration = 600
+        horizontalInfiniteCycleViewPager.interpolator = AnimationUtils.loadInterpolator(this, android.R.anim.overshoot_interpolator)
+        horizontalInfiniteCycleViewPager.isMediumScaled = false
+        horizontalInfiniteCycleViewPager.maxPageScale = 0.8F
+        horizontalInfiniteCycleViewPager.minPageScale = 0.5F
+        horizontalInfiniteCycleViewPager.centerPageScaleOffset = 30.0F
+        horizontalInfiniteCycleViewPager.minPageScaleOffset = 5.0F
+        horizontalInfiniteCycleViewPager.currentItem = horizontalInfiniteCycleViewPager.realItem + 1
 
 
     }
