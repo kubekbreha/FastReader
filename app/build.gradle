@@ -44,6 +44,12 @@ dependencies {
     //epub lib-1
     implementation 'com.github.mertakdut:EpubParser:1.0.95'
 
+    //material file picker
     implementation 'com.nbsp:library:1.8'
+
+    //anko
+    implementation "org.jetbrains.anko:anko:0.10.5"
+    //sql lite
+    implementation "org.jetbrains.anko:anko-sqlite:0.10.5"
 
 }

@@ -1,4 +1,4 @@
-package com.kubekbreha.fastreader
+package com.kubekbreha.fastreader.library
 
 import android.app.Activity
 import android.os.Bundle
@@ -6,9 +6,18 @@ import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_library.*
 import com.nbsp.materialfilepicker.ui.FilePickerActivity
 import android.content.Intent
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
+import com.kubekbreha.fastreader.R
 import com.nbsp.materialfilepicker.MaterialFilePicker
+import com.yarolegovich.discretescrollview.DSVOrientation
+import com.yarolegovich.discretescrollview.DiscreteScrollView
+import com.yarolegovich.discretescrollview.InfiniteScrollAdapter
+import com.yarolegovich.discretescrollview.transform.ScaleTransformer
 import java.util.regex.Pattern
+
+
 
 
 class LibraryActivity : AppCompatActivity() {

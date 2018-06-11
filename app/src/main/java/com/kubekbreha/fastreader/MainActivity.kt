@@ -10,6 +10,7 @@ import android.view.Gravity
 import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
+import com.kubekbreha.fastreader.library.LibraryActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.*
 
