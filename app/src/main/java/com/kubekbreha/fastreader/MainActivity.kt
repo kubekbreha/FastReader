@@ -32,8 +32,12 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
     //range variables for book reader
     private val charsPerPage: Int = 1000
     private var currentSection: Int = 0
+    private var charsCount: Int = 0
 
 
+    /**
+    * On create. -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+    */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -48,7 +52,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
 
         //get array form book
         testBookArray = epubBookReader.getArrayOfWordsInBook(getFileFromAssets("test1.epub"),
-                charsPerPage, 0)
+                charsPerPage, currentSection)
 
 
         //timer which schedule delay between words
@@ -64,8 +68,9 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
             }
         }
 
-    }
 
+
+    }
 
 
     /**
@@ -166,6 +171,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
      * My functions. -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
      */
     fun replaceTex(word: String) {
+        charsCount += word.length
         activity_main_textView.text = word
     }
 
