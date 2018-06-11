@@ -13,8 +13,8 @@ object Utils {
         val txt = view.findViewById(R.id.txt_item) as TextView
         txt.text = libraryObject.title
 
-        val img = view.findViewById(R.id.img_item) as ImageView
-        img.setImageResource(libraryObject.res)
+        //val img = view.findViewById(R.id.img_item) as ImageView
+        //img.setImageResource(libraryObject.res)
     }
 
     class LibraryObject(var res: Int, var title: String?)
