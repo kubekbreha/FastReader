@@ -1,31 +1,26 @@
 package com.kubekbreha.fastreader.library
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_library.*
-import com.nbsp.materialfilepicker.ui.FilePickerActivity
-import android.content.Intent
-import android.view.View
-import android.widget.TextView
 import android.widget.Toast
+import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager
 import com.kubekbreha.fastreader.R
 import com.nbsp.materialfilepicker.MaterialFilePicker
-import com.yarolegovich.discretescrollview.DSVOrientation
-import com.yarolegovich.discretescrollview.DiscreteScrollView
-import com.yarolegovich.discretescrollview.InfiniteScrollAdapter
-import com.yarolegovich.discretescrollview.transform.ScaleTransformer
+import com.nbsp.materialfilepicker.ui.FilePickerActivity
+import kotlinx.android.synthetic.main.activity_library.*
 import java.util.regex.Pattern
-
-
 
 
 class LibraryActivity : AppCompatActivity() {
 
+    lateinit var infiniteCycleViewPager: HorizontalInfiniteCycleViewPager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_library)
+
 
         activity_library_add_book.setOnClickListener{
             MaterialFilePicker()
@@ -35,6 +30,27 @@ class LibraryActivity : AppCompatActivity() {
                     .withHiddenFiles(true) // Show hidden files and folders
                     .start()
         }
+
+        val horizontalInfiniteCycleViewPager = findViewById(R.id.activity_library_view_pager) as HorizontalInfiniteCycleViewPager
+        horizontalInfiniteCycleViewPager.adapter = HorizontalPagerAdapter(this, false)
+
+        //        horizontalInfiniteCycleViewPager.setScrollDuration(400);
+        //        horizontalInfiniteCycleViewPager.setPageDuration(1000);
+        //        horizontalInfiniteCycleViewPager.setInterpolator(
+        //                AnimationUtils.loadInterpolator(getContext(), android.R.anim.overshoot_interpolator)
+        //        );
+        //        horizontalInfiniteCycleViewPager.setMediumScaled(false);
+        //        horizontalInfiniteCycleViewPager.setMaxPageScale(0.8F);
+        //        horizontalInfiniteCycleViewPager.setMinPageScale(0.5F);
+        //        horizontalInfiniteCycleViewPager.setCenterPageScaleOffset(30.0F);
+        //        horizontalInfiniteCycleViewPager.setMinPageScaleOffset(5.0F);
+        //        horizontalInfiniteCycleViewPager.setOnInfiniteCyclePageTransformListener();
+
+        //        horizontalInfiniteCycleViewPager.setCurrentItem(
+        //                horizontalInfiniteCycleViewPager.getRealItem() + 1
+        //        );
+
+
     }
 
 
