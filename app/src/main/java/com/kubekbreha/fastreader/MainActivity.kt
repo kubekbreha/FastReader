@@ -11,8 +11,8 @@ import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
-import java.io.File
-import java.io.FileOutputStream
+import nl.siegmann.epublib.epub.EpubReader
+import java.io.*
 
 
 class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.OnClickListener {
@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
 
     //range variables for book reader
     private val charsPerPage: Int = 1000
-    private var currentSection: Int = 0
+    private var currentSection: Int = 240
     private var charsCount: Int = 0
 
 
@@ -50,9 +50,15 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
         activity_main_restart_imageButton.setOnClickListener(this)
         activity_main_dots_button.setOnClickListener(this)
 
+
+
         //get array form book
         testBookArray = epubBookReader.getArrayOfWordsInBook(getFileFromAssets("test1.epub"),
                 charsPerPage, currentSection)
+
+
+        activity_main_currentWord_textView.text = testBookArray.size.toString()
+        //activity_main_textView.text = testBookArray[16297]
 
 
         //timer which schedule delay between words
@@ -67,8 +73,6 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
                 activity_main_currentWord_textView.text = wordCounter.toString()
             }
         }
-
-
 
     }
 
@@ -193,6 +197,20 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
                 throw RuntimeException(e)
             }
         return file
+    }
+
+
+
+    fun getPagesSize(){
+
+        val epubReader = EpubReader()
+        val book = epubReader.readEpub(FileInputStream(getFileFromAssets("test1.epub")))
+
+        //Log.d( "BOOKCONTENT", book.contents.toString())
+        activity_main_currentWord_textView.text = book.contents.toString()
+
+
+
     }
 
 

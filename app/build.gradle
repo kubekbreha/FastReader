@@ -35,6 +35,9 @@ dependencies {
     //epub lib-1
     implementation 'com.github.mertakdut:EpubParser:1.0.95'
 
-    //epub lib-2
-    implementation 'com.folioreader:folioreader:0.3.9'
+    implementation 'in.nashapp.epublibdroid:epublibdroid:0.0.9'
+
+    implementation 'ir.mtajik.android:advancedPermissionsHandler:1.0.2'
+
+
 }

@@ -1,12 +1,17 @@
 package com.kubekbreha.fastreader
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.app.Activity
+import android.util.Log
+import java.io.IOException
 
-class SettingsActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+class SettingsActivity : Activity() {
+    /** Called when the activity is first created.  */
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
+
+
+
     }
 }
