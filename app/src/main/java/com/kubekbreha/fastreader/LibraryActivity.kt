@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_library.*
 import com.nbsp.materialfilepicker.ui.FilePickerActivity
 import android.content.Intent
+import android.widget.Toast
 import com.nbsp.materialfilepicker.MaterialFilePicker
 import java.util.regex.Pattern
 
@@ -21,8 +22,7 @@ class LibraryActivity : AppCompatActivity() {
             MaterialFilePicker()
                     .withActivity(this)
                     .withRequestCode(1)
-                    .withFilter(Pattern.compile(".*\\.pdf$")) // Filtering files and directories by file name using regexp
-                    .withFilter(Pattern.compile(".*\\.epub$")) // Filtering files and directories by file name using regexp
+                    .withFilter(Pattern.compile(".*\\.pdf$|.*\\.epub\$")) // Filtering files and directories by file name using regexp
                     .withHiddenFiles(true) // Show hidden files and folders
                     .start()
         }
@@ -34,7 +34,7 @@ class LibraryActivity : AppCompatActivity() {
 
         if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
             val filePath = data?.getStringExtra(FilePickerActivity.RESULT_FILE_PATH)
-            // Do anything with file
+                Toast.makeText(this, filePath, Toast.LENGTH_SHORT).show()
         }
     }
 
