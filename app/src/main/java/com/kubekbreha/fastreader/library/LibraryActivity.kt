@@ -23,10 +23,14 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
 
     private val database = DataBaseHandler(this)
     val PERMISSIONS_REQUEST_CODE = 0
+    lateinit var horizontalInfiniteCycleViewPager: HorizontalInfiniteCycleViewPager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_library)
+
+        //viewPager
+        horizontalInfiniteCycleViewPager = findViewById(R.id.activity_library_view_pager)
 
         //buttons
         activity_library_add_book.setOnClickListener(this)
@@ -84,6 +88,9 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
 
             //insert to database
             database.insertData(Book(fileName.reversed(), filePath.toString()))
+
+            //setup viewPager again because of missing just added book
+            setupViewPager()
         }
     }
 
@@ -118,7 +125,6 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
 
 
     fun setupViewPager() {
-        val horizontalInfiniteCycleViewPager = findViewById<HorizontalInfiniteCycleViewPager>(R.id.activity_library_view_pager)
         horizontalInfiniteCycleViewPager.adapter = HorizontalPagerAdapter(this)
         horizontalInfiniteCycleViewPager.scrollDuration = 600
         horizontalInfiniteCycleViewPager.interpolator = AnimationUtils.loadInterpolator(this, android.R.anim.overshoot_interpolator)
