@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.Toast
@@ -16,6 +17,8 @@ import com.kubekbreha.fastreader.R
 import com.nbsp.materialfilepicker.MaterialFilePicker
 import com.nbsp.materialfilepicker.ui.FilePickerActivity
 import kotlinx.android.synthetic.main.activity_library.*
+import kotlinx.android.synthetic.main.item.*
+import org.jetbrains.anko.sdk25.coroutines.onClick
 import java.util.regex.Pattern
 
 
@@ -31,6 +34,7 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
 
         //viewPager
         horizontalInfiniteCycleViewPager = findViewById(R.id.activity_library_view_pager)
+
 
         //buttons
         activity_library_add_book.setOnClickListener(this)
