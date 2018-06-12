@@ -1,8 +1,12 @@
 package com.kubekbreha.fastreader.library
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -18,6 +22,7 @@ import java.util.regex.Pattern
 class LibraryActivity : AppCompatActivity(), View.OnClickListener {
 
     private val database = DataBaseHandler(this)
+    val PERMISSIONS_REQUEST_CODE = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,15 +39,23 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.activity_library_add_book -> {
-                MaterialFilePicker()
-                        .withActivity(this)
-                        .withRequestCode(1)
-                        .withFilter(Pattern.compile(".*\\.pdf$|.*\\.epub\$")) // Filtering files and directories by file name using regexp
-                        .withHiddenFiles(true) // Show hidden files and folders
-                        .start()
+                checkPermissionsAndOpenFilePicker()
             }
 
             else -> {
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int,
+                                            permissions: Array<String>, grantResults: IntArray) {
+        when (requestCode) {
+            PERMISSIONS_REQUEST_CODE -> {
+                if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    openFilePicker()
+                } else {
+                    showError()
+                }
             }
         }
     }
@@ -55,7 +68,7 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
             val filePath = data?.getStringExtra(FilePickerActivity.RESULT_FILE_PATH)
 
             //get file name
-            val fileNameCore =  filePath!!.replace(".epub", "").replace(".pdf", "")
+            val fileNameCore = filePath!!.replace(".epub", "").replace(".pdf", "")
             val fileNameReversed = fileNameCore.reversed()
 
             val end = fileNameReversed.indexOf("/")
@@ -66,12 +79,41 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
             Toast.makeText(this, fileName.reversed(), Toast.LENGTH_SHORT).show()
 
             //insert to database
-            database.insertData(Book( fileName.reversed(), filePath.toString()))
+            database.insertData(Book(fileName.reversed(), filePath.toString()))
+        }
+    }
+
+    private fun checkPermissionsAndOpenFilePicker() {
+        val permission = Manifest.permission.READ_EXTERNAL_STORAGE
+
+        if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
+                showError()
+            } else {
+                ActivityCompat.requestPermissions(this, arrayOf(permission), PERMISSIONS_REQUEST_CODE)
+            }
+        } else {
+            openFilePicker()
         }
     }
 
 
-    fun setupViewPager(){
+    private fun openFilePicker() {
+        MaterialFilePicker()
+                .withActivity(this)
+                .withRequestCode(1)
+                .withFilter(Pattern.compile(".*\\.pdf$|.*\\.epub\$")) // Filtering files and directories by file name using regexp
+                .withHiddenFiles(true) // Show hidden files and folders
+                .start()
+    }
+
+
+    private fun showError() {
+        Toast.makeText(this, "Allow external storage reading", Toast.LENGTH_SHORT).show()
+    }
+
+
+    fun setupViewPager() {
         val horizontalInfiniteCycleViewPager = findViewById<HorizontalInfiniteCycleViewPager>(R.id.activity_library_view_pager)
         horizontalInfiniteCycleViewPager.adapter = HorizontalPagerAdapter(this)
         horizontalInfiniteCycleViewPager.scrollDuration = 600
