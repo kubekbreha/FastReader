@@ -4,6 +4,7 @@ import java.lang.ref.PhantomReference
 
 class Book {
 
+    var id : Int = 0
     lateinit var name: String
     lateinit var reference: String
 

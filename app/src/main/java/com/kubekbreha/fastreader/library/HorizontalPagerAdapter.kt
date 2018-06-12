@@ -10,30 +10,21 @@ import com.kubekbreha.fastreader.R
 import com.kubekbreha.fastreader.utils.LibraryPagerUtil
 
 import com.kubekbreha.fastreader.utils.LibraryPagerUtil.setupItem
+import java.sql.DatabaseMetaData
 
 
 class HorizontalPagerAdapter(mContext: Context) : PagerAdapter() {
 
-    private val LIBRARIES = arrayOf(LibraryPagerUtil.LibraryObject(
-            R.drawable.ic_strategy,
-            "Strategy"
-    ), LibraryPagerUtil.LibraryObject(
-            R.drawable.ic_strategy,
-            "Design"
-    ), LibraryPagerUtil.LibraryObject(
-            R.drawable.ic_strategy,
-            "Development"
-    ), LibraryPagerUtil.LibraryObject(
-            R.drawable.ic_strategy,
-            "Quality Assurance"
-    ))
+    private val database = DataBaseHandler(mContext)
+
+    private val LIBRARY = database.readData()
 
     private val mLayoutInflater: LayoutInflater = LayoutInflater.from(mContext)
 
 
 
     override fun getCount(): Int {
-        return LIBRARIES.size
+        return LIBRARY.size
     }
 
     override fun getItemPosition(`object`: Any): Int {
@@ -42,7 +33,7 @@ class HorizontalPagerAdapter(mContext: Context) : PagerAdapter() {
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val view: View = mLayoutInflater.inflate(R.layout.item, container, false)
-        setupItem(view, LIBRARIES[position])
+        setupItem(view, LIBRARY[position])
         container.addView(view)
         return view
     }

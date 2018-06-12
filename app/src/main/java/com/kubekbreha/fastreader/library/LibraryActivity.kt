@@ -17,6 +17,7 @@ import java.util.regex.Pattern
 
 class LibraryActivity : AppCompatActivity(), View.OnClickListener {
 
+    private val database = DataBaseHandler(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +53,20 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
 
         if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
             val filePath = data?.getStringExtra(FilePickerActivity.RESULT_FILE_PATH)
-            Toast.makeText(this, filePath, Toast.LENGTH_SHORT).show()
+
+            //get file name
+            val fileNameCore =  filePath!!.replace(".epub", "").replace(".pdf", "")
+            val fileNameReversed = fileNameCore.reversed()
+
+            val end = fileNameReversed.indexOf("/")
+            var fileName = ""
+            if (end != -1) {
+                fileName = fileNameReversed.substring(0, end)
+            }
+            Toast.makeText(this, fileName.reversed(), Toast.LENGTH_SHORT).show()
+
+            //insert to database
+            database.insertData(Book( fileName.reversed(), filePath.toString()))
         }
     }
 
