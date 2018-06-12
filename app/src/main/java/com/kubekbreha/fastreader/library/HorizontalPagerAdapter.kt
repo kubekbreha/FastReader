@@ -6,36 +6,34 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-import com.gigamole.infinitecycleviewpager.VerticalInfiniteCycleViewPager
 import com.kubekbreha.fastreader.R
-import com.kubekbreha.fastreader.utils.Utils
+import com.kubekbreha.fastreader.utils.LibraryPagerUtil
 
-import com.kubekbreha.fastreader.utils.Utils.setupItem
+import com.kubekbreha.fastreader.utils.LibraryPagerUtil.setupItem
 
 
-class HorizontalPagerAdapter(private val mContext: Context, private val mIsTwoWay: Boolean) : PagerAdapter() {
+class HorizontalPagerAdapter(mContext: Context) : PagerAdapter() {
 
-    private val LIBRARIES = arrayOf<Utils.LibraryObject>(Utils.LibraryObject(
+    private val LIBRARIES = arrayOf(LibraryPagerUtil.LibraryObject(
             R.drawable.ic_strategy,
             "Strategy"
-    ), Utils.LibraryObject(
+    ), LibraryPagerUtil.LibraryObject(
             R.drawable.ic_strategy,
             "Design"
-    ), Utils.LibraryObject(
+    ), LibraryPagerUtil.LibraryObject(
             R.drawable.ic_strategy,
             "Development"
-    ), Utils.LibraryObject(
+    ), LibraryPagerUtil.LibraryObject(
             R.drawable.ic_strategy,
             "Quality Assurance"
     ))
-    private val mLayoutInflater: LayoutInflater
 
-    init {
-        mLayoutInflater = LayoutInflater.from(mContext)
-    }
+    private val mLayoutInflater: LayoutInflater = LayoutInflater.from(mContext)
+
+
 
     override fun getCount(): Int {
-        return if (mIsTwoWay) 6 else LIBRARIES.size
+        return LIBRARIES.size
     }
 
     override fun getItemPosition(`object`: Any): Int {
@@ -44,10 +42,7 @@ class HorizontalPagerAdapter(private val mContext: Context, private val mIsTwoWa
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val view: View = mLayoutInflater.inflate(R.layout.item, container, false)
-
         setupItem(view, LIBRARIES[position])
-
-
         container.addView(view)
         return view
     }
