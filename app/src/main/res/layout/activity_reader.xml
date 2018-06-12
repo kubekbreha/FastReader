@@ -6,13 +6,19 @@
     android:background="@color/colorPrimary"
     tools:context=".ReaderActivity">
 
+    <android.support.v4.widget.Space
+        android:id="@+id/activity_reader_status_space"
+        android:layout_width="match_parent"
+        android:layout_height="24dp" />
 
     <ImageButton
         android:id="@+id/activity_reader_go_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/activity_reader_status_space"
         android:layout_gravity="start"
-        android:layout_margin="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
         android:background="@color/colorPrimaryDark"
         android:padding="8dp"
         android:src="@drawable/ic_arrow_back" />

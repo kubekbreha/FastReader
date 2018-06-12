@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.view.WindowManager
 import android.widget.SeekBar
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_reader.*
@@ -36,6 +37,9 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reader)
+
+        //hide status bar
+        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
 
         //buttons listeners
         activity_reader_seekBar.setOnSeekBarChangeListener(this)

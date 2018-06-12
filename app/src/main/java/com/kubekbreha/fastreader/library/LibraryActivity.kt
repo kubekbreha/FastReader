@@ -12,6 +12,7 @@ import android.support.v7.widget.PopupMenu
 import android.util.Log
 import android.view.Gravity
 import android.view.View
+import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager
@@ -23,15 +24,19 @@ import kotlinx.android.synthetic.main.activity_library.*
 import java.util.regex.Pattern
 
 
+
 class LibraryActivity : AppCompatActivity(), View.OnClickListener {
 
     private val database = DataBaseHandler(this)
-    val PERMISSIONS_REQUEST_CODE = 0
-    lateinit var horizontalInfiniteCycleViewPager: HorizontalInfiniteCycleViewPager
+    private val PERMISSIONS_REQUEST_CODE = 0
+    private lateinit var horizontalInfiniteCycleViewPager: HorizontalInfiniteCycleViewPager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_library)
+
+        //hide status bar
+        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
 
         //viewPager
         horizontalInfiniteCycleViewPager = findViewById(R.id.activity_library_view_pager)
@@ -42,6 +47,8 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
 
         //view pager
         setupViewPager()
+
+
     }
 
 
@@ -89,7 +96,7 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
                                             permissions: Array<String>, grantResults: IntArray) {
         when (requestCode) {
             PERMISSIONS_REQUEST_CODE -> {
-                if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     openFilePicker()
                 } else {
                     showError()

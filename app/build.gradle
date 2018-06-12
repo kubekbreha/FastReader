@@ -13,6 +13,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        renderscriptTargetApi 19
+        renderscriptSupportModeEnabled true
     }
     buildTypes {
         release {
@@ -57,5 +60,10 @@ dependencies {
 
     //card
     implementation 'com.android.support:cardview-v7:27.1.1'
+
+    //blur image
+    implementation 'com.qiushui:blurredview:0.8.1'
+
+
 
 }

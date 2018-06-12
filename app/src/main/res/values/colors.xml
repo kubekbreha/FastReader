@@ -11,5 +11,6 @@
     <color name="popupBackground">#262626</color>
     <color name="popupText">#FFFFFF</color>
 
+    <color name="transparent">#00ffffff</color>
 
 </resources>
