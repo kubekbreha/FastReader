@@ -9,7 +9,6 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.PopupMenu
-import android.telecom.Call
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -21,8 +20,6 @@ import com.kubekbreha.fastreader.SettingsActivity
 import com.nbsp.materialfilepicker.MaterialFilePicker
 import com.nbsp.materialfilepicker.ui.FilePickerActivity
 import kotlinx.android.synthetic.main.activity_library.*
-import kotlinx.android.synthetic.main.item.*
-import org.jetbrains.anko.sdk25.coroutines.onClick
 import java.util.regex.Pattern
 
 
