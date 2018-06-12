@@ -4,20 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".MainActivity">
+    tools:context=".ReaderActivity">
 
 
     <ImageButton
-        android:id="@+id/activity_main_dots_button"
+        android:id="@+id/activity_reader_go_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+        android:layout_gravity="start"
         android:layout_margin="8dp"
-        android:background="@color/colorPrimary"
-        android:padding="4dp"
-        android:src="@drawable/ic_more_vert" />
-
-
+        android:background="@color/colorPrimaryDark"
+        android:padding="8dp"
+        android:src="@drawable/ic_arrow_back" />
 
     <TextView
         android:id="@+id/activity_main_currentWord_textView"
@@ -30,10 +28,10 @@
 
 
     <Button
-        android:id="@+id/activity_main_minusTen_button"
+        android:id="@+id/activity_reader_minusTen_button"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_alignEnd="@+id/activity_main_running_imageButton"
+        android:layout_alignEnd="@+id/activity_reader_running_imageButton"
         android:layout_marginEnd="72dp"
         android:layout_marginTop="40dp"
         android:background="@color/colorPrimary"
@@ -45,7 +43,7 @@
 
 
     <ImageButton
-        android:id="@+id/activity_main_running_imageButton"
+        android:id="@+id/activity_reader_running_imageButton"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_centerHorizontal="true"
@@ -57,10 +55,10 @@
 
 
     <Button
-        android:id="@+id/activity_main_plusTen_button"
+        android:id="@+id/activity_reader_plusTen_button"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_alignStart="@+id/activity_main_running_imageButton"
+        android:layout_alignStart="@+id/activity_reader_running_imageButton"
         android:layout_marginStart="72dp"
         android:layout_marginTop="40dp"
         android:background="@color/colorPrimary"
@@ -72,10 +70,10 @@
 
 
     <ImageButton
-        android:id="@+id/activity_main_restart_imageButton"
+        android:id="@+id/activity_reader_restart_imageButton"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_alignTop="@+id/activity_main_running_imageButton"
+        android:layout_alignTop="@+id/activity_reader_running_imageButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
         android:background="@color/colorPrimary"
@@ -85,7 +83,7 @@
 
 
     <TextView
-        android:id="@+id/activity_main_textView"
+        android:id="@+id/activity_reader_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -96,7 +94,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/activity_main_currentSpeed_textView"
+        android:id="@+id/activity_reader_currentSpeed_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -108,7 +106,7 @@
         android:textStyle="bold" />
 
     <SeekBar
-        android:id="@+id/activity_main_seekBar"
+        android:id="@+id/activity_reader_seekBar"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

@@ -8,13 +8,16 @@ import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.PopupMenu
 import android.telecom.Call
 import android.util.Log
+import android.view.Gravity
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager
 import com.kubekbreha.fastreader.R
+import com.kubekbreha.fastreader.SettingsActivity
 import com.nbsp.materialfilepicker.MaterialFilePicker
 import com.nbsp.materialfilepicker.ui.FilePickerActivity
 import kotlinx.android.synthetic.main.activity_library.*
@@ -38,7 +41,7 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
 
         //buttons
         activity_library_add_book.setOnClickListener(this)
-        activity_library_go_back.setOnClickListener(this)
+        activity_library_dots_button.setOnClickListener(this)
 
         //view pager
         setupViewPager()
@@ -50,10 +53,35 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
             R.id.activity_library_add_book -> {
                 checkPermissionsAndOpenFilePicker()
             }
-            R.id.activity_library_go_back -> {
-                finish()
-            }
 
+            R.id.activity_library_dots_button -> {
+                val popupMenu = PopupMenu(this, activity_library_dots_button, Gravity.END)
+                popupMenu.setOnMenuItemClickListener { item ->
+                    when (item.itemId) {
+                        R.id.settings -> {
+                            val intent = Intent(this, SettingsActivity::class.java)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                            startActivity(intent)
+                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+                            true
+                        }
+                        else -> false
+                    }
+                }
+                popupMenu.inflate(R.menu.menu_dots)
+                try {
+                    val fieldMPopup = PopupMenu::class.java.getDeclaredField("mPopup")
+                    fieldMPopup.isAccessible = true
+                    val mPopup = fieldMPopup.get(popupMenu)
+                    mPopup.javaClass.getDeclaredMethod("setForceShowIcon", Boolean::class.java)
+                            .invoke(mPopup, true)
+                } catch (e: Exception) {
+                    Log.e("Main", "Error showing icon menu, ", e)
+                } finally {
+                    popupMenu.show()
+                }
+                //popupMenu.show()
+            }
             else -> {
             }
         }

@@ -1,22 +1,16 @@
 package com.kubekbreha.fastreader
 
-import android.app.PendingIntent.getActivity
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.PopupMenu
-import android.util.Log
-import android.view.Gravity
 import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
-import com.kubekbreha.fastreader.library.LibraryActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_reader.*
 import java.io.*
 
 
-class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.OnClickListener {
+class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.OnClickListener {
 
     //array of words
     private var testBookArray = arrayOf<String>()
@@ -41,16 +35,14 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_reader)
 
         //buttons listeners
-        activity_main_seekBar.setOnSeekBarChangeListener(this)
-        activity_main_running_imageButton.setOnClickListener(this)
-        activity_main_plusTen_button.setOnClickListener(this)
-        activity_main_minusTen_button.setOnClickListener(this)
-        activity_main_restart_imageButton.setOnClickListener(this)
-        activity_main_dots_button.setOnClickListener(this)
-
+        activity_reader_seekBar.setOnSeekBarChangeListener(this)
+        activity_reader_running_imageButton.setOnClickListener(this)
+        activity_reader_plusTen_button.setOnClickListener(this)
+        activity_reader_minusTen_button.setOnClickListener(this)
+        activity_reader_restart_imageButton.setOnClickListener(this)
 
 
         //get array form book
@@ -83,20 +75,20 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
      */
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.activity_main_running_imageButton -> {
+            R.id.activity_reader_running_imageButton -> {
                 if (running) {
                     handler!!.removeCallbacks(handlerTask)
                     running = false
-                    activity_main_running_imageButton.setImageResource(R.drawable.ic_play)
+                    activity_reader_running_imageButton.setImageResource(R.drawable.ic_play)
                 } else {
                     handler!!.post(handlerTask)
                     running = true
-                    activity_main_running_imageButton.setImageResource(R.drawable.ic_pause)
+                    activity_reader_running_imageButton.setImageResource(R.drawable.ic_pause)
                 }
                 Toast.makeText(this, running.toString(), Toast.LENGTH_SHORT).show()
             }
 
-            R.id.activity_main_plusTen_button -> {
+            R.id.activity_reader_plusTen_button -> {
                 if (wordCounter <= testBookArray.size - 11)
                     wordCounter += 10
                 else
@@ -104,7 +96,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
                 activity_main_currentWord_textView.text = wordCounter.toString()
             }
 
-            R.id.activity_main_minusTen_button -> {
+            R.id.activity_reader_minusTen_button -> {
                 if (wordCounter >= 10)
                     wordCounter -= 10
                 else
@@ -112,46 +104,9 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
                 activity_main_currentWord_textView.text = wordCounter.toString()
             }
 
-            R.id.activity_main_restart_imageButton -> {
+            R.id.activity_reader_restart_imageButton -> {
                 wordCounter = 0
                 activity_main_currentWord_textView.text = wordCounter.toString()
-            }
-
-            R.id.activity_main_dots_button -> {
-                val popupMenu = PopupMenu(this, activity_main_dots_button, Gravity.END)
-                popupMenu.setOnMenuItemClickListener { item ->
-                    when (item.itemId) {
-                        R.id.settings -> {
-                            val intent = Intent(this, SettingsActivity::class.java)
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                            startActivity(intent)
-                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-                            true
-                        }
-                        R.id.library -> {
-                            val intent = Intent(this, LibraryActivity::class.java)
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                            startActivity(intent)
-                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-                            true
-                        }
-
-                        else -> false
-                    }
-                }
-                popupMenu.inflate(R.menu.menu_dots)
-                try {
-                    val fieldMPopup = PopupMenu::class.java.getDeclaredField("mPopup")
-                    fieldMPopup.isAccessible = true
-                    val mPopup = fieldMPopup.get(popupMenu)
-                    mPopup.javaClass.getDeclaredMethod("setForceShowIcon", Boolean::class.java)
-                            .invoke(mPopup, true)
-                } catch (e: Exception) {
-                    Log.e("Main", "Error showing icon menu, ", e)
-                } finally {
-                    popupMenu.show()
-                }
-                //popupMenu.show()
             }
 
             else -> {
@@ -164,7 +119,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
      * SeekBar functions.-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
      */
     override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-        activity_main_currentSpeed_textView.text = delayMilis.toString() + " (milis between words)"
+        activity_reader_currentSpeed_textView.text = delayMilis.toString() + " (milis between words)"
         delayMilis = 1200L - progress
     }
 
@@ -177,7 +132,7 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
      */
     fun replaceTex(word: String) {
         charsCount += word.length
-        activity_main_textView.text = word
+        activity_reader_textView.text = word
     }
 
 
