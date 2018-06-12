@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.telecom.Call
 import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -35,7 +36,6 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
         //viewPager
         horizontalInfiniteCycleViewPager = findViewById(R.id.activity_library_view_pager)
 
-
         //buttons
         activity_library_add_book.setOnClickListener(this)
         activity_library_go_back.setOnClickListener(this)
@@ -57,6 +57,14 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
             else -> {
             }
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (isFinishing) {
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
+
     }
 
     override fun onRequestPermissionsResult(requestCode: Int,

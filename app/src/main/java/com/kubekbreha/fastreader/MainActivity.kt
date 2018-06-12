@@ -1,5 +1,6 @@
 package com.kubekbreha.fastreader
 
+import android.app.PendingIntent.getActivity
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -121,17 +122,17 @@ class MainActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.
                 popupMenu.setOnMenuItemClickListener { item ->
                     when (item.itemId) {
                         R.id.settings -> {
-                            Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show()
                             val intent = Intent(this, SettingsActivity::class.java)
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                             startActivity(intent)
+                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
                             true
                         }
                         R.id.library -> {
-                            Toast.makeText(this, "Books", Toast.LENGTH_SHORT).show()
                             val intent = Intent(this, LibraryActivity::class.java)
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                             startActivity(intent)
+                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
                             true
                         }
 

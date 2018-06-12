@@ -7,11 +7,18 @@ import java.io.IOException
 
 
 class SettingsActivity : Activity() {
+
     /** Called when the activity is first created.  */
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+    }
 
+    override fun onPause() {
+        super.onPause()
+        if (isFinishing) {
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
 
     }
 }
