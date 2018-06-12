@@ -87,13 +87,6 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    override fun onPause() {
-        super.onPause()
-        if (isFinishing) {
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-        }
-
-    }
 
     override fun onRequestPermissionsResult(requestCode: Int,
                                             permissions: Array<String>, grantResults: IntArray) {

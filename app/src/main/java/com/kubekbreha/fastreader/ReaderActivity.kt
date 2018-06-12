@@ -43,6 +43,7 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
         activity_reader_plusTen_button.setOnClickListener(this)
         activity_reader_minusTen_button.setOnClickListener(this)
         activity_reader_restart_imageButton.setOnClickListener(this)
+        activity_reader_go_back.setOnClickListener(this)
 
 
         //get array form book
@@ -69,6 +70,12 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
 
     }
 
+    override fun onPause() {
+        super.onPause()
+        if (isFinishing) {
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
+    }
 
     /**
      * On click listeners. -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -108,11 +115,16 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
                 wordCounter = 0
                 activity_main_currentWord_textView.text = wordCounter.toString()
             }
+            R.id.activity_reader_go_back -> {
+               finish()
+            }
 
             else -> {
             }
         }
     }
+
+
 
 
     /**
