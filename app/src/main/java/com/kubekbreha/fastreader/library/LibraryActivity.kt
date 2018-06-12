@@ -28,8 +28,9 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_library)
 
-        //add library button
+        //buttons
         activity_library_add_book.setOnClickListener(this)
+        activity_library_go_back.setOnClickListener(this)
 
         //view pager
         setupViewPager()
@@ -40,6 +41,9 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
         when (v?.id) {
             R.id.activity_library_add_book -> {
                 checkPermissionsAndOpenFilePicker()
+            }
+            R.id.activity_library_go_back -> {
+                finish()
             }
 
             else -> {
