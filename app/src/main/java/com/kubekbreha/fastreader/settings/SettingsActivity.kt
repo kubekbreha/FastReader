@@ -13,9 +13,11 @@ import kotlinx.android.synthetic.main.activity_settings.*
 
 
 class SettingsActivity : Activity(), ColorRecyclerAdapter.ItemClickListener
-        , View.OnClickListener{
+        , View.OnClickListener {
 
     private lateinit var adapter: ColorRecyclerAdapter
+    private val viewColors = ArrayList<Int>()
+
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +29,6 @@ class SettingsActivity : Activity(), ColorRecyclerAdapter.ItemClickListener
         activity_settings_go_back.setOnClickListener(this)
 
         // data to populate the RecyclerView with
-        val viewColors = ArrayList<Int>()
         viewColors.add(R.drawable.color_circle_yellow)
         viewColors.add(R.drawable.color_circle_purple)
         viewColors.add(R.drawable.color_circle_red)
@@ -57,7 +58,32 @@ class SettingsActivity : Activity(), ColorRecyclerAdapter.ItemClickListener
 
 
     override fun onItemClick(view: View, position: Int) {
-        Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on item position " + position, Toast.LENGTH_SHORT).show();
+        var colorPicked = viewColors[position]
+        when (colorPicked) {
+            R.drawable.color_circle_yellow -> {
+                Toast.makeText(this, "yellow", Toast.LENGTH_LONG).show()
+            }
+
+            R.drawable.color_circle_purple -> {
+                Toast.makeText(this, "purple", Toast.LENGTH_LONG).show()
+            }
+
+            R.drawable.color_circle_red -> {
+                Toast.makeText(this, "red", Toast.LENGTH_LONG).show()
+            }
+
+            R.drawable.color_circle_blue -> {
+                Toast.makeText(this, "blue", Toast.LENGTH_LONG).show()
+            }
+
+            R.drawable.color_circle_green -> {
+                Toast.makeText(this, "green", Toast.LENGTH_LONG).show()
+            }
+
+            R.drawable.color_circle_pink -> {
+                Toast.makeText(this, "pink", Toast.LENGTH_LONG).show()
+            }
+        }
 
     }
 
