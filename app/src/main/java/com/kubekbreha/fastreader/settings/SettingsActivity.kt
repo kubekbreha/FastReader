@@ -1,14 +1,23 @@
 package com.kubekbreha.fastreader.settings
 
 import android.app.Activity
+import android.graphics.Color
 import android.os.Bundle
+import android.support.v7.widget.RecyclerView
+import android.view.View
 import android.view.WindowManager
+import android.widget.Toast
 import com.kubekbreha.fastreader.R
+import android.support.v7.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_reader.*
+import kotlinx.android.synthetic.main.activity_settings.*
 
 
-class SettingsActivity : Activity() {
+class SettingsActivity : Activity(), ColorRecyclerAdapter.ItemClickListener
+        , View.OnClickListener{
 
-    /** Called when the activity is first created.  */
+    private lateinit var adapter: ColorRecyclerAdapter
+
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
@@ -16,8 +25,42 @@ class SettingsActivity : Activity() {
         //hide status bar
         window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
 
+        activity_settings_go_back.setOnClickListener(this)
+
+        // data to populate the RecyclerView with
+        val viewColors = ArrayList<Int>()
+        viewColors.add(Color.BLUE)
+        viewColors.add(Color.YELLOW)
+        viewColors.add(Color.MAGENTA)
+        viewColors.add(Color.RED)
+        viewColors.add(Color.BLACK)
+
+        // set up the RecyclerView
+        val recyclerView = findViewById<RecyclerView>(R.id.activity_settings_recyclerView)
+        val horizontalLayoutManagaer = LinearLayoutManager(this@SettingsActivity, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.layoutManager = horizontalLayoutManagaer
+        adapter = ColorRecyclerAdapter(this, viewColors)
+        adapter.setClickListener(this)
+        recyclerView.adapter = adapter
+    }
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.activity_settings_go_back -> {
+                finish()
+            }
+
+            else -> {
+            }
+        }
+    }
+
+
+    override fun onItemClick(view: View, position: Int) {
+        Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on item position " + position, Toast.LENGTH_SHORT).show();
 
     }
+
 
     override fun onPause() {
         super.onPause()

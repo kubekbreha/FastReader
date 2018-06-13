@@ -1,14 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".settings.SettingsActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvAnimals"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="24dp"
+        android:background="@color/colorPrimaryDark"/>
 
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:id="@+id/activity_settings_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/colorAccent">
+
+
+        <ImageButton
+            android:id="@+id/activity_settings_go_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_margin="8dp"
+            android:background="@color/transparent"
+            android:padding="8dp"
+            android:src="@drawable/ic_arrow_back_white" />
+
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/activity_settings_pick_theme_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pick theme"
+        android:layout_below="@+id/activity_settings_title_bar"
+        android:textStyle="bold"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"/>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/activity_settings_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_settings_pick_theme_textView" />
+
+</RelativeLayout>
