@@ -9,7 +9,6 @@ import android.view.WindowManager
 import android.widget.Toast
 import com.kubekbreha.fastreader.R
 import android.support.v7.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_reader.*
 import kotlinx.android.synthetic.main.activity_settings.*
 
 
@@ -29,11 +28,12 @@ class SettingsActivity : Activity(), ColorRecyclerAdapter.ItemClickListener
 
         // data to populate the RecyclerView with
         val viewColors = ArrayList<Int>()
-        viewColors.add(Color.BLUE)
-        viewColors.add(Color.YELLOW)
-        viewColors.add(Color.MAGENTA)
-        viewColors.add(Color.RED)
-        viewColors.add(Color.BLACK)
+        viewColors.add(R.drawable.color_circle_yellow)
+        viewColors.add(R.drawable.color_circle_purple)
+        viewColors.add(R.drawable.color_circle_red)
+        viewColors.add(R.drawable.color_circle_blue)
+        viewColors.add(R.drawable.color_circle_green)
+        viewColors.add(R.drawable.color_circle_pink)
 
         // set up the RecyclerView
         val recyclerView = findViewById<RecyclerView>(R.id.activity_settings_recyclerView)

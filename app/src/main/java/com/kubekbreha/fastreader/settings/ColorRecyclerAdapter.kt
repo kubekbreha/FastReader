@@ -22,7 +22,7 @@ internal constructor(context: Context, private val mViewColors: List<Int>) : Rec
     // binds the data to the view and textview in each row
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val color = mViewColors[position]
-        holder.myView.setBackgroundColor(color)
+        holder.myView.setBackgroundResource(color)
     }
 
     // total number of rows
