@@ -1,14 +1,13 @@
 package com.kubekbreha.fastreader.settings
 
 import android.app.Activity
-import android.graphics.Color
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
 import com.kubekbreha.fastreader.R
-import android.support.v7.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_settings.*
 
 
@@ -58,7 +57,7 @@ class SettingsActivity : Activity(), ColorRecyclerAdapter.ItemClickListener
 
 
     override fun onItemClick(view: View, position: Int) {
-        var colorPicked = viewColors[position]
+        val colorPicked = viewColors[position]
         when (colorPicked) {
             R.drawable.color_circle_yellow -> {
                 Toast.makeText(this, "yellow", Toast.LENGTH_LONG).show()
