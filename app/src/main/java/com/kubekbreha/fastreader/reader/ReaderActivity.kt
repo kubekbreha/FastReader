@@ -1,4 +1,4 @@
-package com.kubekbreha.fastreader
+package com.kubekbreha.fastreader.reader
 
 import android.os.Bundle
 import android.os.Handler
@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.SeekBar
 import android.widget.TextView
 import android.widget.Toast
+import com.kubekbreha.fastreader.R
 import com.kubekbreha.fastreader.utils.sensey.PinchScaleDetector
 import com.kubekbreha.fastreader.utils.sensey.Sensey
 import com.kubekbreha.fastreader.utils.sensey.TouchTypeDetector
@@ -28,7 +29,7 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
     //variables for BookReader
     private var handler: Handler? = null
     private var handlerTask: Runnable? = null
-    private val epubBookReader = com.kubekbreha.fastreader.bookReader.EpubBookReader()
+    private val epubBookReader = com.kubekbreha.fastreader.utils.bookReader.EpubBookReader()
 
     //range variables for book reader
     private val charsPerPage: Int = 1000

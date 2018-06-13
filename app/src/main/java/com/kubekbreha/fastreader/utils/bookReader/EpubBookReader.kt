@@ -1,4 +1,4 @@
-package com.kubekbreha.fastreader.bookReader
+package com.kubekbreha.fastreader.utils.bookReader
 
 import android.util.Log
 import com.github.mertakdut.Reader

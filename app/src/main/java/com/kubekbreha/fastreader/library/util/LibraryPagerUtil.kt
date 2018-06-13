@@ -1,4 +1,4 @@
-package com.kubekbreha.fastreader.utils
+package com.kubekbreha.fastreader.library.util
 
 import android.view.View
 import android.widget.TextView

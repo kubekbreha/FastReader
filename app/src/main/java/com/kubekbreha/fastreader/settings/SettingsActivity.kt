@@ -1,8 +1,9 @@
-package com.kubekbreha.fastreader
+package com.kubekbreha.fastreader.settings
 
 import android.app.Activity
 import android.os.Bundle
 import android.view.WindowManager
+import com.kubekbreha.fastreader.R
 
 
 class SettingsActivity : Activity() {
