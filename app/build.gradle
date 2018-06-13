@@ -62,7 +62,5 @@ dependencies {
     //card
     implementation 'com.android.support:cardview-v7:27.1.1'
 
-    //gestures
-    implementation 'com.github.nisrulz:sensey:1.8.0'
 
 }
