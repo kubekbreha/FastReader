@@ -87,7 +87,7 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
 
         //start gestures detection
         startTouchTypeDetection()
-
+        startPinchDetection()
     }
 
     override fun onPause() {
@@ -111,6 +111,8 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
         super.onResume()
 
         startTouchTypeDetection()
+        startPinchDetection()
+
     }
 
 
