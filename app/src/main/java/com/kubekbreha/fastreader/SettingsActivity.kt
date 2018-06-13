@@ -1,12 +1,8 @@
 package com.kubekbreha.fastreader
 
-import android.os.Bundle
 import android.app.Activity
-import android.util.Log
+import android.os.Bundle
 import android.view.WindowManager
-import kotlinx.android.synthetic.main.activity_library.*
-import kotlinx.android.synthetic.main.activity_settings.*
-import java.io.IOException
 
 
 class SettingsActivity : Activity() {
@@ -14,9 +10,12 @@ class SettingsActivity : Activity() {
     /** Called when the activity is first created.  */
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_settings)
 
         //hide status bar
         window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+
+
     }
 
     override fun onPause() {

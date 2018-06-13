@@ -10,8 +10,6 @@
     tools:context=".library.LibraryActivity">
 
 
-
-
     <ImageButton
         android:id="@+id/activity_library_dots_button"
         android:layout_width="40dp"

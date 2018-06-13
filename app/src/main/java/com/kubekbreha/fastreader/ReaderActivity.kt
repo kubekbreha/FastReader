@@ -3,10 +3,16 @@ package com.kubekbreha.fastreader
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
+import android.view.MotionEvent
+import android.view.ScaleGestureDetector
 import android.view.View
-import android.view.WindowManager
 import android.widget.SeekBar
+import android.widget.TextView
 import android.widget.Toast
+import com.github.nisrulz.sensey.PinchScaleDetector
+import com.github.nisrulz.sensey.Sensey
+import com.github.nisrulz.sensey.TouchTypeDetector
 import kotlinx.android.synthetic.main.activity_reader.*
 import java.io.*
 
@@ -30,16 +36,22 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
     private var currentSection: Int = 0
     private var charsCount: Int = 0
 
+    //gestures
+    private val LOGTAG = "TouchActivity"
+    private val DEBUG = true
+    private var txtResult: TextView? = null
+
 
     /**
-    * On create. -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-    */
+     * On create. -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reader)
 
-        //hide status bar
-        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        //gestures
+        Sensey.getInstance().init(this)
+        txtResult = findViewById(R.id.activity_reader_textView)
 
         //buttons listeners
         activity_reader_seekBar.setOnSeekBarChangeListener(this)
@@ -72,6 +84,10 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
             }
         }
 
+
+        //start gestures detection
+        startTouchTypeDetection()
+
     }
 
     override fun onPause() {
@@ -79,7 +95,25 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
         if (isFinishing) {
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
+
+        Sensey.getInstance().stopTouchTypeDetection()
+        Sensey.getInstance().stopPinchScaleDetection()
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        Sensey.getInstance().stop()
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+
+        startTouchTypeDetection()
+    }
+
+
 
     /**
      * On click listeners. -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -120,7 +154,7 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
                 activity_main_currentWord_textView.text = wordCounter.toString()
             }
             R.id.activity_reader_go_back -> {
-               finish()
+                finish()
             }
 
             else -> {
@@ -173,7 +207,98 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
 
 
 
-}
+    //gestrue functions
+    override fun dispatchTouchEvent(event: MotionEvent): Boolean {
+        // Setup onTouchEvent for detecting type of touch gesture
+        Sensey.getInstance().setupDispatchTouchEvent(event)
+        return super.dispatchTouchEvent(event)
+    }
 
+    private fun resetResultInView(txt: TextView) {
+        val handler = Handler()
+        handler.postDelayed({ txt.text = "resultsShowHere" }, 3000)
+    }
+
+    private fun setResultTextView(text: String) {
+        if (txtResult != null) {
+            txtResult!!.setText(text)
+            resetResultInView(txtResult!!)
+            if (DEBUG) {
+                Log.i(LOGTAG, text)
+            }
+        }
+    }
+
+    private fun startPinchDetection() {
+        Sensey.getInstance()
+                .startPinchScaleDetection(this@ReaderActivity, object : PinchScaleDetector.PinchScaleListener {
+                    override fun onScale(scaleGestureDetector: ScaleGestureDetector, isScalingOut: Boolean) {
+                        if (isScalingOut) {
+                            setResultTextView("Scaling Out")
+                        } else {
+                            setResultTextView("Scaling In")
+                        }
+                    }
+
+                    override fun onScaleEnd(scaleGestureDetector: ScaleGestureDetector) {
+                        setResultTextView("Scaling : Stopped")
+                    }
+
+                    override fun onScaleStart(scaleGestureDetector: ScaleGestureDetector) {
+                        setResultTextView("Scaling : Started")
+                    }
+                })
+    }
+
+    private fun startTouchTypeDetection() {
+        Sensey.getInstance()
+                .startTouchTypeDetection(this@ReaderActivity, object : TouchTypeDetector.TouchTypListener {
+                    override fun onDoubleTap() {
+                        setResultTextView("Double Tap")
+                    }
+
+                    override fun onLongPress() {
+                        setResultTextView("Long press")
+                    }
+
+                    override fun onScroll(scrollDirection: Int) {
+                        when (scrollDirection) {
+                            TouchTypeDetector.SCROLL_DIR_UP -> setResultTextView("Scrolling Up")
+                            TouchTypeDetector.SCROLL_DIR_DOWN -> setResultTextView("Scrolling Down")
+                            TouchTypeDetector.SCROLL_DIR_LEFT -> setResultTextView("Scrolling Left")
+                            TouchTypeDetector.SCROLL_DIR_RIGHT -> setResultTextView("Scrolling Right")
+                            else -> {
+                            }
+                        }// Do nothing
+                    }
+
+                    override fun onSingleTap() {
+                        setResultTextView("Single Tap")
+                    }
+
+                    override fun onSwipe(swipeDirection: Int) {
+                        when (swipeDirection) {
+                            TouchTypeDetector.SWIPE_DIR_UP -> setResultTextView("Swipe Up")
+                            TouchTypeDetector.SWIPE_DIR_DOWN -> setResultTextView("Swipe Down")
+                            TouchTypeDetector.SWIPE_DIR_LEFT -> setResultTextView("Swipe Left")
+                            TouchTypeDetector.SWIPE_DIR_RIGHT -> setResultTextView("Swipe Right")
+                            else -> {
+                            }
+                        }//do nothing
+                    }
+
+                    override fun onThreeFingerSingleTap() {
+                        setResultTextView("Three Finger Tap")
+                    }
+
+                    override fun onTwoFingerSingleTap() {
+                        setResultTextView("Two Finger Tap")
+                    }
+                })
+    }
+
+
+
+}
 
 
