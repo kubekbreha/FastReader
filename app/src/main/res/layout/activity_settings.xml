@@ -8,7 +8,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="24dp"
-        android:background="@color/colorPrimaryDark"/>
+        android:background="@color/colorPrimaryDark" />
 
     <RelativeLayout
         android:id="@+id/activity_settings_title_bar"
@@ -26,7 +26,21 @@
             android:layout_margin="8dp"
             android:background="@color/transparent"
             android:padding="8dp"
-            android:src="@drawable/ic_arrow_back_white" />
+            android:src="@drawable/ic_arrow_back_black" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignStart="@+id/activity_settings_go_back"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="22dp"
+            android:text="Settings"
+            android:textColor="@color/colorBlack"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
 
     </RelativeLayout>
@@ -36,12 +50,12 @@
         android:id="@+id/activity_settings_pick_theme_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pick theme"
         android:layout_below="@+id/activity_settings_title_bar"
-        android:textStyle="bold"
-        android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Pick theme"
+        android:textStyle="bold" />
 
 
     <android.support.v7.widget.RecyclerView
