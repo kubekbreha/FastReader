@@ -9,6 +9,10 @@ import android.view.WindowManager
 import android.widget.Toast
 import com.kubekbreha.fastreader.R
 import kotlinx.android.synthetic.main.activity_settings.*
+import android.content.Intent
+import android.R.id.edit
+import android.content.SharedPreferences
+import android.preference.PreferenceManager
 
 
 class SettingsActivity : Activity(), ColorRecyclerAdapter.ItemClickListener
@@ -17,6 +21,7 @@ class SettingsActivity : Activity(), ColorRecyclerAdapter.ItemClickListener
     private lateinit var adapter: ColorRecyclerAdapter
     private val viewColors = ArrayList<Int>()
 
+    protected var mPrefs: SharedPreferences? = null
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
