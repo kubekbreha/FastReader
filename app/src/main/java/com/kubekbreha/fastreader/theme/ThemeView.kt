@@ -6,18 +6,18 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
+import android.util.Log
 import android.util.TypedValue
 import android.view.View
+import android.widget.Toast
 
 import com.kubekbreha.fastreader.R
 
 
-/**
- * Created by Pankaj on 27-10-2017.
- */
-
 class ThemeView : View {
     private var mTheme = Theme(R.color.primaryColorAmber, R.color.primaryDarkColorAmber, R.color.secondaryColorAmber)
+
+
 
     private var mBoarderPaint: Paint? = null
     private var mPrimaryPaint: Paint? = null
@@ -29,14 +29,20 @@ class ThemeView : View {
 
     constructor(context: Context) : super(context) {
         init()
+        Log.e("themeSetup", mTheme.accentColor.toString())
+
     }
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         init()
+        Log.e("themeSetup", mTheme.accentColor.toString())
+
     }
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
         init()
+        Log.e("themeSetup", mTheme.accentColor.toString())
+
     }
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes) {
@@ -45,6 +51,7 @@ class ThemeView : View {
 
     fun setTheme(theme: Theme) {
         this.mTheme = theme
+        Log.e("theme", mTheme.accentColor.toString())
         init()
         invalidate()
     }
@@ -85,8 +92,11 @@ class ThemeView : View {
             mAccentPaint!!.color = ContextCompat.getColor(context, mTheme.accentColor)
             mAccentPaint!!.isAntiAlias = true
             mAccentPaint!!.isDither = true
+            Toast.makeText(context, "Setted theme", Toast.LENGTH_SHORT).show()
+
         } catch (ex: Exception) {
             ex.printStackTrace()
+            Toast.makeText(context, "Error theme", Toast.LENGTH_SHORT).show()
         }
 
     }

@@ -13,6 +13,8 @@ import android.content.Intent
 import android.R.id.edit
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
+import com.kubekbreha.fastreader.theme.Theme
+import com.kubekbreha.fastreader.theme.ThemeView
 
 
 class SettingsActivity : Activity(), ColorRecyclerAdapter.ItemClickListener
