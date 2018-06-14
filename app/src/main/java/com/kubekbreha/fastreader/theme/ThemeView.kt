@@ -50,6 +50,7 @@ class ThemeView : View {
     }
 
     private fun init() {
+        var color : Int
         try {
             mBoarderPaint = Paint()
             mBoarderPaint!!.style = Paint.Style.STROKE
@@ -61,11 +62,14 @@ class ThemeView : View {
 
             mBackgroundPaint = Paint()
             mBackgroundPaint!!.style = Paint.Style.FILL
-            var color = android.R.color.background_light
+            color = android.R.color.background_light
+
             val a = TypedValue()
             context.theme.resolveAttribute(android.R.attr.windowBackground, a, true)
-            if (a.type >= TypedValue.TYPE_FIRST_COLOR_INT && a.type <= TypedValue.TYPE_LAST_COLOR_INT)
+            if (a.type >= TypedValue.TYPE_FIRST_COLOR_INT && a.type <= TypedValue.TYPE_LAST_COLOR_INT) {
                 color = a.data    // windowBackground is a color
+            }
+
             mBackgroundPaint!!.color = color
 
             mPrimaryDarkPaint = Paint()
