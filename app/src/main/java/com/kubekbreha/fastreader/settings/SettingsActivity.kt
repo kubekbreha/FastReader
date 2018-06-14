@@ -9,12 +9,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import com.kubekbreha.fastreader.R
 import kotlinx.android.synthetic.main.activity_settings.*
-import android.content.Intent
-import android.R.id.edit
 import android.content.SharedPreferences
-import android.preference.PreferenceManager
-import com.kubekbreha.fastreader.theme.Theme
-import com.kubekbreha.fastreader.theme.ThemeView
 
 
 class SettingsActivity : Activity(), ColorRecyclerAdapter.ItemClickListener
