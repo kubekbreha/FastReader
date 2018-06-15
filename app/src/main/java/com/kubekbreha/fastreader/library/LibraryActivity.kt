@@ -18,6 +18,7 @@ import android.widget.Toast
 import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager
 import com.kubekbreha.fastreader.R
 import com.kubekbreha.fastreader.settings.SettingsActivity
+import com.kubekbreha.fastreader.theme.MainActivity
 import com.nbsp.materialfilepicker.MaterialFilePicker
 import com.nbsp.materialfilepicker.ui.FilePickerActivity
 import kotlinx.android.synthetic.main.activity_library.*
@@ -64,6 +65,13 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
                     when (item.itemId) {
                         R.id.settings -> {
                             val intent = Intent(this, SettingsActivity::class.java)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                            startActivity(intent)
+                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+                            true
+                        }
+                        R.id.main -> {
+                            val intent = Intent(this, MainActivity::class.java)
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                             startActivity(intent)
                             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)

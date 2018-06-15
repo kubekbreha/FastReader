@@ -1,6 +1,5 @@
 package com.kubekbreha.fastreader.settings
 
-import android.app.Activity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -8,11 +7,12 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
 import com.kubekbreha.fastreader.R
-import kotlinx.android.synthetic.main.activity_settings.*
 import android.content.SharedPreferences
+import android.support.v7.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_settings.*
 
 
-class SettingsActivity : Activity(), ColorRecyclerAdapter.ItemClickListener
+class SettingsActivity : AppCompatActivity(), ColorRecyclerAdapter.ItemClickListener
         , View.OnClickListener {
 
     private lateinit var adapter: ColorRecyclerAdapter
@@ -44,7 +44,9 @@ class SettingsActivity : Activity(), ColorRecyclerAdapter.ItemClickListener
         adapter = ColorRecyclerAdapter(this, viewColors)
         adapter.setClickListener(this)
         recyclerView.adapter = adapter
+
     }
+
 
     override fun onClick(v: View?) {
         when (v?.id) {
@@ -63,6 +65,7 @@ class SettingsActivity : Activity(), ColorRecyclerAdapter.ItemClickListener
         when (colorPicked) {
             R.drawable.color_circle_yellow -> {
                 Toast.makeText(this, "yellow", Toast.LENGTH_LONG).show()
+
             }
 
             R.drawable.color_circle_purple -> {

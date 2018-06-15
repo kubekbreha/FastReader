@@ -1,0 +1,95 @@
+<resources>
+
+    <!-- Base application themes. -->
+    <style name="AppThemeYellow" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/circle_yellow</item>
+        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
+        <item name="android:buttonStyle">@style/RobotoButtonStyle</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <!--<book_item name="popupMenuStyle">@style/popupMenuStyle</book_item>-->
+        <!--<book_item name="android:itemTextAppearance">@style/itemTextStyle.AppTheme</book_item>-->
+    </style>
+
+    <style name="AppThemePurple" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/circle_purple</item>
+        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
+        <item name="android:buttonStyle">@style/RobotoButtonStyle</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <!--<book_item name="popupMenuStyle">@style/popupMenuStyle</book_item>-->
+        <!--<book_item name="android:itemTextAppearance">@style/itemTextStyle.AppTheme</book_item>-->
+    </style>
+
+    <style name="AppThemeRed" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/circle_red</item>
+        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
+        <item name="android:buttonStyle">@style/RobotoButtonStyle</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <!--<book_item name="popupMenuStyle">@style/popupMenuStyle</book_item>-->
+        <!--<book_item name="android:itemTextAppearance">@style/itemTextStyle.AppTheme</book_item>-->
+    </style>
+
+    <style name="AppThemeBlue" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/circle_blue</item>
+        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
+        <item name="android:buttonStyle">@style/RobotoButtonStyle</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <!--<book_item name="popupMenuStyle">@style/popupMenuStyle</book_item>-->
+        <!--<book_item name="android:itemTextAppearance">@style/itemTextStyle.AppTheme</book_item>-->
+    </style>
+
+    <style name="AppThemeGreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/circle_green</item>
+        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
+        <item name="android:buttonStyle">@style/RobotoButtonStyle</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <!--<book_item name="popupMenuStyle">@style/popupMenuStyle</book_item>-->
+        <!--<book_item name="android:itemTextAppearance">@style/itemTextStyle.AppTheme</book_item>-->
+    </style>
+
+    <style name="AppThemePink" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/circle_pink</item>
+        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
+        <item name="android:buttonStyle">@style/RobotoButtonStyle</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <!--<book_item name="popupMenuStyle">@style/popupMenuStyle</book_item>-->
+        <!--<book_item name="android:itemTextAppearance">@style/itemTextStyle.AppTheme</book_item>-->
+    </style>
+
+
+    <style name="RobotoTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="RobotoButtonStyle" parent="android:Widget.Holo.Button">
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="popupMenuStyle" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:popupBackground">@color/popupBackground</item>
+    </style>
+
+    <style name="itemTextStyle.AppTheme" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
+        <item name="android:textColor">@drawable/color_popup_text</item>
+        <item name="android:textSize">@dimen/popup_text_size</item>
+    </style>
+
+
+</resources>

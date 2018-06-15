@@ -6,4 +6,9 @@
         android:icon="@drawable/ic_settings"
         android:title="Settings" />
 
+    <item
+        android:id="@+id/main"
+        android:icon="@drawable/ic_settings"
+        android:title="Main" />
+
 </menu>
