@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".settings.SettingsActivity"
-    android:background="@color/colorWhite">
+    android:background="@color/colorWhite"
+    tools:context=".settings.SettingsActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -49,10 +49,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/activity_settings_title_bar"
         android:layout_marginBottom="8dp"
-        android:textColor="@color/colorBlack"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Pick theme"
+        android:textColor="@color/colorBlack"
         android:textStyle="bold" />
 
 
@@ -61,5 +61,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/activity_settings_pick_theme_textView" />
+
+    <TextView
+        android:id="@+id/activity_settings_pick_mode_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_settings_recyclerView"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Pick mode"
+        android:textColor="@color/colorBlack"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/activity_settings_pick_dark_mode_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_settings_pick_mode_textView"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="18dp"
+        android:text="Use dark mode"
+        android:textColor="@color/colorBlack" />
+
+
+    <Switch
+        android:id="@+id/activity_settings_dark_mode_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/activity_settings_pick_mode_textView"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp" />
+
 
 </RelativeLayout>

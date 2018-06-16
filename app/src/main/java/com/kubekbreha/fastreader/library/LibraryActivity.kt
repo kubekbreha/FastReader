@@ -8,12 +8,14 @@ import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.app.AppCompatDelegate
 import android.support.v7.widget.PopupMenu
 import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
+import android.widget.CompoundButton
 import android.widget.Toast
 import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager
 import com.kubekbreha.fastreader.R
@@ -31,6 +33,7 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
     private val database = DataBaseHandler(this)
     private val PERMISSIONS_REQUEST_CODE = 0
     private lateinit var horizontalInfiniteCycleViewPager: HorizontalInfiniteCycleViewPager
+    private var mIsNightMode = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(ThemeUtil.getThemeId(SettingsActivity.mTheme))
@@ -51,8 +54,9 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
         //view pager
         setupViewPager()
 
-
     }
+
+
 
 
     override fun onClick(v: View?) {

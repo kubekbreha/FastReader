@@ -66,6 +66,23 @@ class SettingsActivity : AppCompatActivity()
         activity_settings_go_back.setOnClickListener(this)
 
         adapter.notifyDataSetChanged()
+
+
+        activity_settings_dark_mode_switch.setOnCheckedChangeListener(
+                object : CompoundButton.OnCheckedChangeListener {
+                    override fun onCheckedChanged(compoundButton: CompoundButton, b: Boolean) {
+                        mIsNightMode = b
+
+                        if (mIsNightMode) {
+                            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                        } else {
+                            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                        }
+
+                    }
+                })
+
+
     }
 
 
