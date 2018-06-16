@@ -6,10 +6,6 @@ import com.kubekbreha.fastreader.theme.model.Theme
 
 import java.util.ArrayList
 
-/**
- * Created by Pankaj on 12-11-2017.
- */
-
 object ThemeUtil {
     val THEME_RED = 0
     val THEME_PINK = 1

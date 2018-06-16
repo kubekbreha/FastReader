@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <View
-        android:id="@+id/color_item_view"
-        android:layout_width="48dp"
-        android:background="@drawable/color_circle_yellow"
-        android:layout_height="48dp"/>
+    <com.kubekbreha.fastreader.theme.view.ThemeView
+        android:id="@+id/themeView"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_margin="16dp" />
 
-</LinearLayout>
+</RelativeLayout>

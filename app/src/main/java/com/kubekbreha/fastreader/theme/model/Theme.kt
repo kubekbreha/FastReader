@@ -1,8 +1,5 @@
 package com.kubekbreha.fastreader.theme.model
 
-/**
- * Created by Pankaj on 03-11-2017.
- */
 
 class Theme {
     var id: Int = 0

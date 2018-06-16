@@ -44,12 +44,8 @@ class SettingsActivity : AppCompatActivity()
         setContentView(R.layout.activity_settings)
 
         // data to populate the RecyclerView with
-        viewColors.add(Theme(1, R.color.primaryColorPink, R.color.primaryDarkColorPink, R.color.secondaryColorPink))
-        viewColors.add(Theme(2, R.color.primaryColorPurple, R.color.primaryDarkColorPurple, R.color.secondaryColorPurple))
-        viewColors.add(Theme(3, R.color.primaryColorDeepPurple, R.color.primaryDarkColorDeepPurple, R.color.secondaryColorDeepPurple))
-        viewColors.add(Theme(4, R.color.primaryColorIndigo, R.color.primaryDarkColorIndigo, R.color.secondaryColorIndigo))
-        viewColors.add(Theme(5, R.color.primaryColorBlue, R.color.primaryDarkColorBlue, R.color.secondaryColorBlue))
-        viewColors.add(Theme(6, R.color.primaryColorLightBlue, R.color.primaryDarkColorLightBlue, R.color.secondaryColorLightBlue))
+        viewColors.clear()
+        viewColors.addAll(ThemeUtil.themeList)
 
         // set up the RecyclerView
         val recyclerView = findViewById<RecyclerView>(R.id.activity_settings_recyclerView)
@@ -69,7 +65,7 @@ class SettingsActivity : AppCompatActivity()
 
         activity_settings_go_back.setOnClickListener(this)
 
-
+        adapter.notifyDataSetChanged()
     }
 
 

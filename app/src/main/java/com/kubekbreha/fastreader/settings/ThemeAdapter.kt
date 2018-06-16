@@ -15,7 +15,7 @@ class ThemeAdapter(private val themeList: List<Theme>, private val mRecyclerView
         var themeView: ThemeView
 
         init {
-            themeView = view.findViewById(R.id.color_item_view) as ThemeView
+            themeView = view.findViewById(R.id.themeView) as ThemeView
             view.setOnClickListener(this)
         }
 
