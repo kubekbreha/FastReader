@@ -10,6 +10,8 @@ import android.widget.SeekBar
 import android.widget.TextView
 import android.widget.Toast
 import com.kubekbreha.fastreader.R
+import com.kubekbreha.fastreader.settings.SettingsActivity
+import com.kubekbreha.fastreader.theme.util.ThemeUtil
 import com.kubekbreha.fastreader.utils.sensey.PinchScaleDetector
 import com.kubekbreha.fastreader.utils.sensey.Sensey
 import com.kubekbreha.fastreader.utils.sensey.TouchTypeDetector
@@ -44,6 +46,8 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
      * On create. -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
      */
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(ThemeUtil.getThemeId(SettingsActivity.mTheme))
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reader)
 

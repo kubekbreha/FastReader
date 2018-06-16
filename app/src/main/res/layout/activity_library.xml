@@ -41,8 +41,11 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_margin="16dp"
+        android:background="?android:attr/colorAccent"
         android:src="@drawable/ic_add"
-        app:fabSize="normal" />
+        app:fabSize="normal" >
+    <requestFocus/>
+    </android.support.design.widget.FloatingActionButton>
 
 
 </RelativeLayout>

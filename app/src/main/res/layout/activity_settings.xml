@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginTop="24dp"
-        android:background="?android:attr/colorPrimary">
+        android:background="?android:attr/colorAccent">
 
         <ImageButton
             android:id="@+id/activity_settings_go_back"

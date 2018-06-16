@@ -18,6 +18,7 @@ import android.widget.Toast
 import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager
 import com.kubekbreha.fastreader.R
 import com.kubekbreha.fastreader.settings.SettingsActivity
+import com.kubekbreha.fastreader.theme.util.ThemeUtil
 import com.nbsp.materialfilepicker.MaterialFilePicker
 import com.nbsp.materialfilepicker.ui.FilePickerActivity
 import kotlinx.android.synthetic.main.activity_library.*
@@ -32,6 +33,8 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var horizontalInfiniteCycleViewPager: HorizontalInfiniteCycleViewPager
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(ThemeUtil.getThemeId(SettingsActivity.mTheme))
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_library)
 
