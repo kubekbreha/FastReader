@@ -18,7 +18,6 @@ import android.widget.Toast
 import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager
 import com.kubekbreha.fastreader.R
 import com.kubekbreha.fastreader.settings.SettingsActivity
-import com.kubekbreha.fastreader.theme.MainActivity
 import com.nbsp.materialfilepicker.MaterialFilePicker
 import com.nbsp.materialfilepicker.ui.FilePickerActivity
 import kotlinx.android.synthetic.main.activity_library.*

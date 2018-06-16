@@ -7,7 +7,6 @@ import android.support.v4.view.PagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.kubekbreha.fastreader.theme.MainActivity
 import com.kubekbreha.fastreader.R
 import com.kubekbreha.fastreader.library.util.LibraryPagerUtil.setupItem
 import com.kubekbreha.fastreader.reader.ReaderActivity
