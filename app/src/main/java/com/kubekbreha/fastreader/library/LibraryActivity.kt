@@ -69,13 +69,7 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
                             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
                             true
                         }
-                        R.id.main -> {
-                            val intent = Intent(this, MainActivity::class.java)
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                            startActivity(intent)
-                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-                            true
-                        }
+
                         else -> false
                     }
                 }
