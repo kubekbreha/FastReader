@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
     tools:context=".reader.ReaderActivity">
 
     <android.support.v4.widget.Space
@@ -64,7 +63,6 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/activity_reader_restart_imageButton"
         android:layout_above="@+id/activity_reader_currentSpeed_textView"
-        android:background="@color/colorPrimary"
         android:gravity="center"
         android:text="hit"
         android:textColor="?android:attr/colorAccent"

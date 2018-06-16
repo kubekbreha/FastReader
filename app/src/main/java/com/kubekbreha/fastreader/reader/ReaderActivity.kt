@@ -196,6 +196,7 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
 
 
 
+    //TODO NEED TO FIX THAT
     //gestrue functions
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
         // Setup onTouchEvent for detecting type of touch gesture
