@@ -1,5 +1,6 @@
 package com.kubekbreha.fastreader.settings
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -15,6 +16,7 @@ import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.GridLayoutManager
 import android.widget.CompoundButton
 import android.widget.LinearLayout
+import com.kubekbreha.fastreader.library.LibraryActivity
 import com.kubekbreha.fastreader.theme.model.Theme
 import com.kubekbreha.fastreader.theme.util.ThemeUtil
 import com.kubekbreha.fastreader.theme.util.ThemeUtil.THEME_RED
@@ -34,12 +36,10 @@ class SettingsActivity : AppCompatActivity()
 
     }
 
-    protected var mPrefs: SharedPreferences? = null
-
     public override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
         setTheme(ThemeUtil.getThemeId(mTheme))
+
+        super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_settings)
 
@@ -58,7 +58,6 @@ class SettingsActivity : AppCompatActivity()
         })
 
         recyclerView.adapter = adapter
-
 
         //hide status bar
         window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
@@ -89,6 +88,13 @@ class SettingsActivity : AppCompatActivity()
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.activity_settings_go_back -> {
+                //start library activity
+                val intent = Intent(this, LibraryActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                startActivity(intent)
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+
+                //finish the setting
                 finish()
             }
 
@@ -98,6 +104,17 @@ class SettingsActivity : AppCompatActivity()
     }
 
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        //start library activity
+        val intent = Intent(this, LibraryActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+
+        //finish the setting
+        finish()
+    }
 
     override fun onPause() {
         super.onPause()

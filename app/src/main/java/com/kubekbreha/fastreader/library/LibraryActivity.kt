@@ -27,7 +27,6 @@ import kotlinx.android.synthetic.main.activity_library.*
 import java.util.regex.Pattern
 
 
-
 class LibraryActivity : AppCompatActivity(), View.OnClickListener {
 
     private val database = DataBaseHandler(this)
@@ -39,6 +38,7 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
         setTheme(ThemeUtil.getThemeId(SettingsActivity.mTheme))
 
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_library)
 
         //hide status bar
@@ -55,7 +55,6 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
         setupViewPager()
 
     }
-
 
 
 
@@ -117,6 +116,7 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
+
         if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
             val filePath = data?.getStringExtra(FilePickerActivity.RESULT_FILE_PATH)
 
@@ -137,7 +137,12 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
             //setup viewPager again because of missing just added book
             setupViewPager()
         }
+
+
     }
+
+
+
 
     private fun checkPermissionsAndOpenFilePicker() {
         val permission = Manifest.permission.READ_EXTERNAL_STORAGE
