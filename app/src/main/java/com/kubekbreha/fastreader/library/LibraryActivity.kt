@@ -36,7 +36,6 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
     private val database = DataBaseHandler(this)
     private val PERMISSIONS_REQUEST_CODE = 0
     private lateinit var horizontalInfiniteCycleViewPager: HorizontalInfiniteCycleViewPager
-    private var mIsNightMode = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(ThemeUtil.getThemeId(SettingsActivity.mTheme))

@@ -72,27 +72,22 @@ class SettingsActivity : AppCompatActivity()
         activity_settings_dark_mode_switch.thumbDrawable.setColorFilter(getThemePrimaryColor(this), PorterDuff.Mode.MULTIPLY);
         activity_settings_dark_mode_switch.trackDrawable.setColorFilter(getThemePrimaryColor(this), PorterDuff.Mode.MULTIPLY);
 
-        activity_settings_dark_mode_switch.setOnCheckedChangeListener(
-                object : CompoundButton.OnCheckedChangeListener {
-                    override fun onCheckedChanged(compoundButton: CompoundButton, b: Boolean) {
-                        mIsNightMode = b
+        activity_settings_dark_mode_switch.setOnCheckedChangeListener { _, selected ->
+            mIsNightMode = selected
 
-                        if (mIsNightMode) {
-                            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                        } else {
-                            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                        }
-
-                    }
-                })
-
+            if (mIsNightMode) {
+                delegate.setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                delegate.setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
 
     }
 
 
     private fun getThemePrimaryColor(context: Context): Int {
         val value = TypedValue()
-        context.getTheme().resolveAttribute(R.attr.colorPrimary, value, true)
+        context.theme.resolveAttribute(R.attr.colorPrimary, value, true)
         return value.data
     }
 

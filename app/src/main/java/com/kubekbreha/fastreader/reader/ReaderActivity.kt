@@ -22,8 +22,7 @@ import java.io.*
 import android.R.attr.data
 import android.content.Context
 import android.util.TypedValue
-
-
+import android.view.WindowManager
 
 
 class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.OnClickListener {
@@ -57,6 +56,9 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reader)
+
+        //hide status bar
+        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
 
         //gestures
         Sensey.getInstance().init(this)
@@ -104,7 +106,7 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
 
     private fun getThemePrimaryColor(context: Context): Int {
         val value = TypedValue()
-        context.getTheme().resolveAttribute(R.attr.colorPrimary, value, true)
+        context.theme.resolveAttribute(R.attr.colorPrimary, value, true)
         return value.data
     }
 
