@@ -1,6 +1,5 @@
 package com.kubekbreha.fastreader.reader
 
-import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.os.Handler
@@ -19,10 +18,11 @@ import com.kubekbreha.fastreader.utils.sensey.Sensey
 import com.kubekbreha.fastreader.utils.sensey.TouchTypeDetector
 import kotlinx.android.synthetic.main.activity_reader.*
 import java.io.*
-import android.R.attr.data
 import android.content.Context
 import android.util.TypedValue
 import android.view.WindowManager
+import com.kubekbreha.fastreader.utils.reader.EpubFileReader
+import com.kubekbreha.fastreader.utils.reader.PdfFileReader
 
 
 class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.OnClickListener {
@@ -34,10 +34,11 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
     private var wordCounter = 0
     private var running = false
 
-    //variables for BookReader
+    //variables for FileReader
     private var handler: Handler? = null
     private var handlerTask: Runnable? = null
-    private val epubBookReader = com.kubekbreha.fastreader.utils.bookReader.EpubBookReader()
+    private val epubBookReader = EpubFileReader()
+    private val pdfBookReader = PdfFileReader()
 
     //range variables for book reader
     private val charsPerPage: Int = 1000
@@ -76,8 +77,12 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
 
 
         //get array form book
-        testBookArray = epubBookReader.getArrayOfWordsInBook(getFileFromAssets("test1.epub"),
+        testBookArray = epubBookReader.getArrayOfWords(getFileFromAssets("test1.epub"),
                 charsPerPage, currentSection)
+
+        pdfBookReader.getArrayOfWords()
+
+
 
 
         activity_main_currentWord_textView.text = testBookArray.size.toString()

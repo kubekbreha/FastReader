@@ -1,6 +1,5 @@
 package com.kubekbreha.fastreader.library
 
-import java.lang.ref.PhantomReference
 
 class Book {
 

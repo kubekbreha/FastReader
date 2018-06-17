@@ -22,6 +22,7 @@ import android.widget.CompoundButton
 import android.widget.Toast
 import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager
 import com.kubekbreha.fastreader.R
+import com.kubekbreha.fastreader.reader.ReaderActivity
 import com.kubekbreha.fastreader.settings.SettingsActivity
 import com.kubekbreha.fastreader.theme.util.ThemeUtil
 import com.nbsp.materialfilepicker.MaterialFilePicker
@@ -38,6 +39,7 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var horizontalInfiniteCycleViewPager: HorizontalInfiniteCycleViewPager
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.AppTheme)
 
         val prefs = getSharedPreferences("theme_settings_shared_preference", Context.MODE_PRIVATE)
         SettingsActivity.mTheme = prefs.getInt("theme", 0)
@@ -82,6 +84,14 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
                     when (item.itemId) {
                         R.id.settings -> {
                             val intent = Intent(this, SettingsActivity::class.java)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                            startActivity(intent)
+                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+                            true
+                        }
+
+                        R.id.develop -> {
+                            val intent = Intent(this, ReaderActivity::class.java)
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                             startActivity(intent)
                             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
