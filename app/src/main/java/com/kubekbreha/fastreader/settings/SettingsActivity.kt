@@ -30,13 +30,12 @@ class SettingsActivity : AppCompatActivity()
         , View.OnClickListener {
 
     private lateinit var adapter: ThemeAdapter
-    private var mIsNightMode = false
 
     companion object {
         var selectedTheme = 8
         var mTheme = 8
         val viewColors = ArrayList<Theme>()
-
+        var mIsNightMode= false
     }
 
     public override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +44,8 @@ class SettingsActivity : AppCompatActivity()
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_settings)
+
+        activity_settings_dark_mode_switch.isChecked = mIsNightMode
 
         // data to populate the RecyclerView with
         viewColors.clear()
@@ -130,12 +131,6 @@ class SettingsActivity : AppCompatActivity()
         editor.putInt("theme", mTheme)
         editor.putBoolean("darkMode", mIsNightMode)
         editor.apply()
-
-
-//        val prefs = getSharedPreferences("theme_settings_shared_preference", Context.MODE_PRIVATE)
-//        mTheme = prefs.getInt("theme", 0)
-//        mIsNightMode = prefs.getBoolean("darkMode", false)
-
     }
 
 
