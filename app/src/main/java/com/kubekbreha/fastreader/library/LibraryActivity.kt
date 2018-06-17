@@ -39,10 +39,19 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
+        val prefs = getSharedPreferences("theme_settings_shared_preference", Context.MODE_PRIVATE)
+        SettingsActivity.mTheme = prefs.getInt("theme", 0)
+        SettingsActivity.selectedTheme = prefs.getInt("theme", 0)
+        SettingsActivity.mIsNightMode = prefs.getBoolean("darkMode", false)
+        if (SettingsActivity.mIsNightMode) {
+            delegate.setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            delegate.setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
+
         setTheme(ThemeUtil.getThemeId(SettingsActivity.mTheme))
 
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_library)
 
         //hide status bar

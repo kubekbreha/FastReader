@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Launcher">
-        <activity android:name=".splash.SplashActivity">
+        <activity android:name=".library.LibraryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,7 +22,7 @@
         </activity>
         <activity android:name=".settings.SettingsActivity" />
         <activity android:name=".reader.ReaderActivity" />
-        <activity android:name=".library.LibraryActivity" />
+        <activity android:name=".splash.SplashActivity" />
     </application>
 
 </manifest>
