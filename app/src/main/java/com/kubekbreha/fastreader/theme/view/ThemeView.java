@@ -19,7 +19,6 @@ public class ThemeView extends View {
     private Paint mBoarderPaint;
     private Paint mPrimaryPaint;
     private Paint mPrimaryDarkPaint;
-    private Paint mAccentPaint;
     private Paint mBackgroundPaint;
 
     private float stroke;
@@ -77,11 +76,7 @@ public class ThemeView extends View {
             mPrimaryPaint.setStyle(Paint.Style.FILL);
             mPrimaryPaint.setColor(ContextCompat.getColor(getContext(), mTheme.getPrimaryColor()));
 
-            mAccentPaint = new Paint();
-            mAccentPaint.setStyle(Paint.Style.FILL);
-            mAccentPaint.setColor(ContextCompat.getColor(getContext(), mTheme.getAccentColor()));
-            mAccentPaint.setAntiAlias(true);
-            mAccentPaint.setDither(true);
+
         }catch (Exception ex){
             ex.printStackTrace();
         }
@@ -106,7 +101,6 @@ public class ThemeView extends View {
         canvas.drawRect(0,0,width,height,mBackgroundPaint);
         canvas.drawRect(0,0,width,statusbar,mPrimaryDarkPaint);
         canvas.drawRect(0,statusbar,width,toolbar,mPrimaryPaint);
-        canvas.drawCircle(width-stroke-height*20 /100f,toolbar, height*16/100, mAccentPaint);
         canvas.drawRect(0,0,width,height,mBoarderPaint);
     }
 }

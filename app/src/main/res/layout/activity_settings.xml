@@ -8,14 +8,14 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="24dp"
-        android:background="@color/colorPrimaryDark" />
+        android:background="?android:attr/colorPrimaryDark" />
 
     <RelativeLayout
         android:id="@+id/activity_settings_title_bar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginTop="24dp"
-        android:background="?android:attr/colorAccent">
+        android:background="?android:attr/colorPrimary">
 
         <ImageButton
             android:id="@+id/activity_settings_go_back"

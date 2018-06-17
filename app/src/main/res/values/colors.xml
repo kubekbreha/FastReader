@@ -12,6 +12,7 @@
     <color name="popupText">#FFFFFF</color>
 
     <color name="transparent">#00ffffff</color>
+    <color name="transparentDark">#976b6b6b</color>
 
 
     <color name="circle_yellow">#F1C40F</color>
