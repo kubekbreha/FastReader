@@ -12,18 +12,17 @@ import com.kubekbreha.fastreader.theme.view.ThemeView
 class ThemeAdapter(private val themeList: List<Theme>, private val mRecyclerViewClickListener: RecyclerViewClickListener) : RecyclerView.Adapter<ThemeAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(view: View, private val mListener: RecyclerViewClickListener) : RecyclerView.ViewHolder(view), View.OnClickListener {
-        var themeView: ThemeView
+        var themeView: ThemeView = view.findViewById(R.id.themeView) as ThemeView
 
         init {
-            themeView = view.findViewById(R.id.themeView) as ThemeView
             view.setOnClickListener(this)
         }
 
         override fun onClick(view: View) {
             mListener.onClick(view, adapterPosition)
             SettingsActivity.selectedTheme = adapterPosition
-            SettingsActivity.mTheme = SettingsActivity.viewColors.get(adapterPosition).id
-            themeView.setActivated(true)
+            SettingsActivity.mTheme = SettingsActivity.viewColors[adapterPosition].id
+            themeView.isActivated = true
             this@ThemeAdapter.notifyDataSetChanged()
         }
     }
@@ -39,11 +38,7 @@ class ThemeAdapter(private val themeList: List<Theme>, private val mRecyclerView
         val theme = themeList[position]
         holder.themeView.setTheme(theme)
 
-        if (SettingsActivity.selectedTheme == position) {
-            holder.themeView.setActivated(true)
-        } else {
-            holder.themeView.setActivated(false)
-        }
+        holder.themeView.isActivated = SettingsActivity.selectedTheme == position
     }
 
     override fun getItemCount(): Int {
