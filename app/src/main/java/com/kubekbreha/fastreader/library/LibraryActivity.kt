@@ -2,8 +2,10 @@ package com.kubekbreha.fastreader.library
 
 import android.Manifest
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
@@ -11,6 +13,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.app.AppCompatDelegate
 import android.support.v7.widget.PopupMenu
 import android.util.Log
+import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
@@ -24,6 +27,7 @@ import com.kubekbreha.fastreader.theme.util.ThemeUtil
 import com.nbsp.materialfilepicker.MaterialFilePicker
 import com.nbsp.materialfilepicker.ui.FilePickerActivity
 import kotlinx.android.synthetic.main.activity_library.*
+import kotlinx.android.synthetic.main.activity_reader.*
 import java.util.regex.Pattern
 
 

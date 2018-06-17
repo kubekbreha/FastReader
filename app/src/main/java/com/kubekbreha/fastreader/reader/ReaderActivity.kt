@@ -1,5 +1,7 @@
 package com.kubekbreha.fastreader.reader
 
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
@@ -17,6 +19,11 @@ import com.kubekbreha.fastreader.utils.sensey.Sensey
 import com.kubekbreha.fastreader.utils.sensey.TouchTypeDetector
 import kotlinx.android.synthetic.main.activity_reader.*
 import java.io.*
+import android.R.attr.data
+import android.content.Context
+import android.util.TypedValue
+
+
 
 
 class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.OnClickListener {
@@ -55,6 +62,9 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
         Sensey.getInstance().init(this)
         txtResult = findViewById(R.id.activity_reader_textView)
 
+        activity_reader_seekBar.progressDrawable.setColorFilter(getThemePrimaryColor(this), PorterDuff.Mode.SRC_IN)
+        activity_reader_seekBar.thumb.setColorFilter(getThemePrimaryColor(this), PorterDuff.Mode.SRC_IN)
+
         //buttons listeners
         activity_reader_seekBar.setOnSeekBarChangeListener(this)
         activity_reader_running_imageButton.setOnClickListener(this)
@@ -90,6 +100,12 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
 //        startPinchDetection()
 
 
+    }
+
+    private fun getThemePrimaryColor(context: Context): Int {
+        val value = TypedValue()
+        context.getTheme().resolveAttribute(R.attr.colorPrimary, value, true)
+        return value.data
     }
 
     override fun onPause() {
