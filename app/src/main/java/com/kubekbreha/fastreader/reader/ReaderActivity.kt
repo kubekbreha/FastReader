@@ -52,6 +52,7 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
      * On create. -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
      */
     override fun onCreate(savedInstanceState: Bundle?) {
+
         setTheme(ThemeUtil.getThemeId(SettingsActivity.mTheme))
 
         super.onCreate(savedInstanceState)
