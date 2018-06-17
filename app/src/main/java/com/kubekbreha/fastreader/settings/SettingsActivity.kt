@@ -112,8 +112,6 @@ class SettingsActivity : AppCompatActivity()
 
 
     override fun onBackPressed() {
-        super.onBackPressed()
-        //start library activity
         val intent = Intent(this, LibraryActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
