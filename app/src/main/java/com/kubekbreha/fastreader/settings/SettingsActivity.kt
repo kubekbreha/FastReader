@@ -1,5 +1,6 @@
 package com.kubekbreha.fastreader.settings
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -9,11 +10,13 @@ import android.view.WindowManager
 import android.widget.Toast
 import com.kubekbreha.fastreader.R
 import android.content.SharedPreferences
+import android.graphics.PorterDuff
 import android.support.design.widget.BottomSheetBehavior
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.app.AppCompatDelegate
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.GridLayoutManager
+import android.util.TypedValue
 import android.widget.CompoundButton
 import android.widget.LinearLayout
 import com.kubekbreha.fastreader.library.LibraryActivity
@@ -66,6 +69,8 @@ class SettingsActivity : AppCompatActivity()
 
         adapter.notifyDataSetChanged()
 
+        activity_settings_dark_mode_switch.thumbDrawable.setColorFilter(getThemePrimaryColor(this), PorterDuff.Mode.MULTIPLY);
+        activity_settings_dark_mode_switch.trackDrawable.setColorFilter(getThemePrimaryColor(this), PorterDuff.Mode.MULTIPLY);
 
         activity_settings_dark_mode_switch.setOnCheckedChangeListener(
                 object : CompoundButton.OnCheckedChangeListener {
@@ -82,6 +87,13 @@ class SettingsActivity : AppCompatActivity()
                 })
 
 
+    }
+
+
+    private fun getThemePrimaryColor(context: Context): Int {
+        val value = TypedValue()
+        context.getTheme().resolveAttribute(R.attr.colorPrimary, value, true)
+        return value.data
     }
 
 
