@@ -62,6 +62,8 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
         Toast.makeText(this, fileReference, Toast.LENGTH_SHORT).show()
         Log.e("intent", fileReference)
 
+
+
         //hide status bar
         window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
 

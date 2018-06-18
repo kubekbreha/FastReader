@@ -5,7 +5,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.PorterDuff
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
@@ -13,23 +12,18 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.app.AppCompatDelegate
 import android.support.v7.widget.PopupMenu
 import android.util.Log
-import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
-import android.widget.CompoundButton
 import android.widget.Toast
 import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager
 import com.kubekbreha.fastreader.R
-import com.kubekbreha.fastreader.reader.ReaderActivity
 import com.kubekbreha.fastreader.settings.SettingsActivity
 import com.kubekbreha.fastreader.theme.util.ThemeUtil
-import com.kubekbreha.fastreader.utils.reader.LogTestBookInfo
 import com.nbsp.materialfilepicker.MaterialFilePicker
 import com.nbsp.materialfilepicker.ui.FilePickerActivity
 import kotlinx.android.synthetic.main.activity_library.*
-import kotlinx.android.synthetic.main.activity_reader.*
 import java.util.regex.Pattern
 
 
@@ -92,10 +86,7 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
                         }
 
                         R.id.develop -> {
-                            val intent = Intent(this, LogTestBookInfo::class.java)
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                            startActivity(intent)
-                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+
                             true
                         }
 
