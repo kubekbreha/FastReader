@@ -12,7 +12,6 @@ class EpubFileReader : com.kubekbreha.fastreader.utils.reader.FileReader {
      * Get array with words from EPUB book.
      */
     fun getArrayOfWords(sampleFile :File, charsPerPage : Int, section: Int) : Array<String> {
-        sampleFile.getPath()
         reader.setMaxContentPerSection(charsPerPage) // Max string length for the current page.
         reader.setIsIncludingTextContent(true) // Optional, to return the tags-excluded version.
         reader.setFullContent(sampleFile.getPath()) // Must call before readSection.

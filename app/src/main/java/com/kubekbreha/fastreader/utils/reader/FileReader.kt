@@ -1,5 +1,6 @@
 package com.kubekbreha.fastreader.utils.reader
 
-interface FileReader {
+import java.io.File
 
+interface FileReader {
 }

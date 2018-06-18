@@ -53,11 +53,12 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
      * On create. -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-
         setTheme(ThemeUtil.getThemeId(SettingsActivity.mTheme))
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reader)
+
+        val fileReference = intent.getStringExtra("reference")
+        Toast.makeText(this, fileReference, Toast.LENGTH_SHORT).show()
 
         //hide status bar
         window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
@@ -76,18 +77,21 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
         activity_reader_go_back.setOnClickListener(this)
 
 
+        //check if pdf ot ebup
+        val charArrayReference = fileReference.toCharArray()
+        charArrayReference[fileReference.length - 1]
+
+
         //get array form book
-        testBookArray = epubBookReader.getArrayOfWords(getFileFromAssets("test1.epub"),
-                charsPerPage, currentSection)
-
-        pdfBookReader.getArrayOfWords()
-
-
+        if(charArrayReference[fileReference.length - 1] == 'f'){
+            pdfBookReader.getArrayOfWords(fileReference)
+        }else if(charArrayReference[fileReference.length - 1] == 'b'){
+            testBookArray = epubBookReader.getArrayOfWords(getFileFromAssets(""),
+                    charsPerPage, currentSection)
+        }
 
 
         activity_main_currentWord_textView.text = testBookArray.size.toString()
-        //activity_main_textView.text = testBookArray[16297]
-
 
         //timer which schedule delay between words
         handler = Handler()

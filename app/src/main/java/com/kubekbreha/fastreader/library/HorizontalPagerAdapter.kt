@@ -7,6 +7,7 @@ import android.support.v4.view.PagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.kubekbreha.fastreader.R
 import com.kubekbreha.fastreader.library.util.LibraryPagerUtil.setupItem
 import com.kubekbreha.fastreader.reader.ReaderActivity
@@ -21,6 +22,7 @@ class HorizontalPagerAdapter(mContext: Context) : PagerAdapter() {
 
     private val mLayoutInflater: LayoutInflater = LayoutInflater.from(mContext)
 
+    private val _context = mContext
 
     override fun getCount(): Int {
         return LIBRARY.size
@@ -35,8 +37,10 @@ class HorizontalPagerAdapter(mContext: Context) : PagerAdapter() {
 
         view.onClick {
             val intent = Intent(view.context, ReaderActivity::class.java)
+            intent.putExtra("reference", LIBRARY[position].reference)
             view.context.startActivity(intent)
             (view.context as Activity).overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+            //Toast.makeText(_context ,LIBRARY[position].reference, Toast.LENGTH_SHORT).show()
         }
 
         setupItem(view, LIBRARY[position])
