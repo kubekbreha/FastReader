@@ -8,21 +8,25 @@ import java.io.File
 
 class PdfFileReader : FileReader {
 
-    fun getArrayOfWords(sampleFile : String)  {
+    fun getArrayOfWords(sampleFile: String, page: Int): Array<String> {
+        var parsedText = ""
 
         try {
-            var parsedText = ""
             val pdfReader = PdfReader(sampleFile)
-            val n = pdfReader.getNumberOfPages()
-            Log.e("pdfReader", n.toString())
-            for (i in 0 until n) {
-                parsedText = parsedText + PdfTextExtractor.getTextFromPage(pdfReader, i + 1).trim() + "\n" //Extracting the content from the different pages
-            }
+            parsedText = parsedText + PdfTextExtractor.getTextFromPage(pdfReader, page + 1).trim() + "\n" //Extracting the content from the different pages
             Log.e("pdfReader", parsedText)
             pdfReader.close()
         } catch (e: Exception) {
             Log.e("pdfReader", "sakra prace sakra prace sakra prace sakra prace sakra prace$e")
         }
 
+        return parsedText.split(" ").toTypedArray()
     }
+
+
+    fun getPagesCount(sampleFile: String): Int {
+        val pdfReader = PdfReader(sampleFile)
+        return pdfReader.numberOfPages
+    }
+
 }

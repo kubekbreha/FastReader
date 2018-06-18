@@ -84,7 +84,7 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
 
         //get array form book
         if(charArrayReference[fileReference.length - 1] == 'f'){
-            pdfBookReader.getArrayOfWords(fileReference)
+            testBookArray = pdfBookReader.getArrayOfWords(fileReference, 0)
         }else if(charArrayReference[fileReference.length - 1] == 'b'){
             testBookArray = epubBookReader.getArrayOfWords(File(fileReference),
                     charsPerPage, 0)
