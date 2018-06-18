@@ -86,8 +86,8 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
         if(charArrayReference[fileReference.length - 1] == 'f'){
             pdfBookReader.getArrayOfWords(fileReference)
         }else if(charArrayReference[fileReference.length - 1] == 'b'){
-            testBookArray = epubBookReader.getArrayOfWords(getFileFromAssets(""),
-                    charsPerPage, currentSection)
+            testBookArray = epubBookReader.getArrayOfWords(File(fileReference),
+                    charsPerPage, 0)
         }
 
 
@@ -201,27 +201,6 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
         charsCount += word.length
         activity_reader_textView.text = word
     }
-
-
-    fun getFileFromAssets(fileName: String): File {
-        val file = File(cacheDir.toString() + "/" + fileName)
-        if (!file.exists())
-            try {
-                val `is` = assets.open(fileName)
-                val size = `is`.available()
-                val buffer = ByteArray(size)
-                `is`.read(buffer)
-                `is`.close()
-
-                val fos = FileOutputStream(file)
-                fos.write(buffer)
-                fos.close()
-            } catch (e: Exception) {
-                throw RuntimeException(e)
-            }
-        return file
-    }
-
 
 
     //TODO NEED TO FIX THAT
