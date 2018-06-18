@@ -17,8 +17,7 @@ class EpubFileReader : com.kubekbreha.fastreader.utils.reader.FileReader {
         reader.setFullContent(sampleFile.path) // Must call before readSection.
 
         val bookSection = reader.readSection(section)
-        val sectionContent = bookSection.getSectionContent() // Returns content as html.
-        val sectionTextContent = bookSection.getSectionTextContent() // Excludes html tags.
+        val sectionTextContent = bookSection.sectionTextContent // Excludes html tags.
 
         Log.e("BOOK", sectionTextContent)
         Log.e("BOOK", sectionTextContent.length.toString())

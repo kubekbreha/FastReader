@@ -25,6 +25,7 @@ import com.kubekbreha.fastreader.R
 import com.kubekbreha.fastreader.reader.ReaderActivity
 import com.kubekbreha.fastreader.settings.SettingsActivity
 import com.kubekbreha.fastreader.theme.util.ThemeUtil
+import com.kubekbreha.fastreader.utils.reader.LogTestBookInfo
 import com.nbsp.materialfilepicker.MaterialFilePicker
 import com.nbsp.materialfilepicker.ui.FilePickerActivity
 import kotlinx.android.synthetic.main.activity_library.*
@@ -91,7 +92,7 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
                         }
 
                         R.id.develop -> {
-                            val intent = Intent(this, ReaderActivity::class.java)
+                            val intent = Intent(this, LogTestBookInfo::class.java)
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                             startActivity(intent)
                             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)

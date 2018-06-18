@@ -30,6 +30,9 @@ repositories {
     maven {
         url "http://dl.bintray.com/lukaville/maven"
     }
+    maven {
+        url "http://dl.bintray.com/dasar/maven"
+    }
 
 }
 
@@ -47,12 +50,14 @@ dependencies {
 
     //epub lib-1
     implementation 'com.github.mertakdut:EpubParser:1.0.95'
+    implementation 'nl.siegmann.epublib:epub-core:1.0@aar'
 
     //material file picker
     implementation 'com.nbsp:library:1.8'
 
     //anko
     implementation "org.jetbrains.anko:anko:0.10.5"
+
     //sql lite
     implementation "org.jetbrains.anko:anko-sqlite:0.10.5"
 
@@ -64,5 +69,10 @@ dependencies {
 
     //pdfToText
     implementation 'com.itextpdf:itextg:5.5.10'
+
+
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+
 
 }

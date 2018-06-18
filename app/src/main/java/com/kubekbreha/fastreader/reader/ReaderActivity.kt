@@ -19,6 +19,7 @@ import com.kubekbreha.fastreader.utils.sensey.TouchTypeDetector
 import kotlinx.android.synthetic.main.activity_reader.*
 import java.io.*
 import android.content.Context
+import android.util.Log
 import android.util.TypedValue
 import android.view.WindowManager
 import com.kubekbreha.fastreader.utils.reader.EpubFileReader
@@ -59,6 +60,7 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
 
         val fileReference = intent.getStringExtra("reference")
         Toast.makeText(this, fileReference, Toast.LENGTH_SHORT).show()
+        Log.e("intent", fileReference)
 
         //hide status bar
         window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
