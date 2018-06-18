@@ -43,7 +43,7 @@ class HorizontalPagerAdapter(mContext: Context) : PagerAdapter() {
             //Toast.makeText(_context ,LIBRARY[position].reference, Toast.LENGTH_SHORT).show()
         }
 
-        setupItem(view, LIBRARY[position])
+        setupItem(view, LIBRARY[position], _context)
         container.addView(view)
         return view
     }

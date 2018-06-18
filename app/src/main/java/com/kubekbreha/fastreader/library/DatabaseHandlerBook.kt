@@ -5,12 +5,17 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
+import android.graphics.Bitmap
+import android.support.v4.app.NotificationCompat.getExtras
+import java.io.ByteArrayOutputStream
+
 
 val DATABASE_NAME ="FastReaderDatabase"
 val TABLE_NAME="Books"
 val COL_ID = "id"
 val COL_NAME = "name"
 val COL_REFERENCE = "reference"
+val COL_IMAGE = "image"
 
 class DataBaseHandler(var context: Context) : SQLiteOpenHelper(context,DATABASE_NAME,null,1){
     override fun onCreate(db: SQLiteDatabase?) {
@@ -18,7 +23,7 @@ class DataBaseHandler(var context: Context) : SQLiteOpenHelper(context,DATABASE_
         val createTable = "CREATE TABLE " + TABLE_NAME +" (" +
                 COL_ID +" INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COL_NAME + " VARCHAR(256)," +
-                COL_REFERENCE +" VARCHAR(256))"
+                COL_REFERENCE +" VARCHAR(256)"
 
         db?.execSQL(createTable)
 
@@ -28,20 +33,24 @@ class DataBaseHandler(var context: Context) : SQLiteOpenHelper(context,DATABASE_
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    fun insertData(user : Book){
+    fun insertData(book : Book){
         val db = this.writableDatabase
-        var cv = ContentValues()
-        cv.put(COL_NAME,user.name)
-        cv.put(COL_REFERENCE,user.reference)
-        var result = db.insert(TABLE_NAME,null,cv)
-        if(result == -1.toLong())
+        val cv = ContentValues()
+
+        //name
+        cv.put(COL_NAME,book.name)
+        cv.put(COL_REFERENCE,book.reference)
+
+
+        val result = db.insert(TABLE_NAME,null,cv)
+        if(result == (-1).toLong())
             Toast.makeText(context,"Failed",Toast.LENGTH_SHORT).show()
         else
             Toast.makeText(context,"Success",Toast.LENGTH_SHORT).show()
     }
 
     fun readData() : MutableList<Book>{
-        var list : MutableList<Book> = ArrayList()
+        val list : MutableList<Book> = ArrayList()
 
         val db = this.readableDatabase
         val query = "Select * from " + TABLE_NAME
