@@ -22,6 +22,7 @@ import com.kubekbreha.fastreader.R
 import com.kubekbreha.fastreader.settings.SettingsActivity
 import com.kubekbreha.fastreader.theme.util.ThemeUtil
 import com.kubekbreha.fastreader.utils.reader.EpubFileReader
+import com.kubekbreha.fastreader.utils.reader.PdfFileReader
 import com.nbsp.materialfilepicker.MaterialFilePicker
 import com.nbsp.materialfilepicker.ui.FilePickerActivity
 import kotlinx.android.synthetic.main.activity_library.*
@@ -150,7 +151,7 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
             if(filePath.toString()[filePath.toString().length - 1] == 'b') {
                 database.insertData(Book(fileName.reversed(), filePath.toString(), EpubFileReader().getImage(filePath.toString(), this)!!))
             }else{
-                database.insertData(Book(fileName.reversed(), filePath.toString(), R))
+                database.insertData(Book(fileName.reversed(), filePath.toString(), PdfFileReader().pdfToBitmap(filePath.toString())))
             }
             //setup viewPager again because of missing just added book
             setupViewPager()

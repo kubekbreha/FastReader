@@ -40,8 +40,6 @@
             android:id="@+id/book_item_roundedImageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/test"
-
             android:background="@color/colorWhite"
             android:scaleType="centerCrop"
             />

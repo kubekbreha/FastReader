@@ -18,11 +18,9 @@ object LibraryPagerUtil {
         val txt = view.findViewById(R.id.book_item_textView) as TextView
         txt.text = book.name
 
-        if(book.reference[book.reference.length - 1] == 'b'){
-            val bitmap = BitmapFactory.decodeByteArray(book.image, 0, book.image.size)
-            val image = view.findViewById(book_item_roundedImageView) as ImageView
-            image.setImageBitmap(bitmap)
-        }
-    }
+        val bitmap = BitmapFactory.decodeByteArray(book.image, 0, book.image.size)
+        val image = view.findViewById(book_item_roundedImageView) as ImageView
+        image.setImageBitmap(bitmap)
 
+    }
 }
