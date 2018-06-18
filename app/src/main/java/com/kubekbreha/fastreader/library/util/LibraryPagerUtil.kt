@@ -2,12 +2,14 @@ package com.kubekbreha.fastreader.library.util
 
 import android.content.Context
 import android.view.View
-import android.widget.ImageView
 import android.widget.TextView
 
-import com.kubekbreha.fastreader.R
 import com.kubekbreha.fastreader.library.Book
-import com.kubekbreha.fastreader.utils.reader.EpubFileReader
+import android.graphics.BitmapFactory
+import android.widget.ImageButton
+import android.widget.ImageView
+import com.kubekbreha.fastreader.R
+import com.kubekbreha.fastreader.R.id.book_item_roundedImageView
 
 
 object LibraryPagerUtil {
@@ -17,8 +19,9 @@ object LibraryPagerUtil {
         txt.text = book.name
 
         if(book.reference[book.reference.length - 1] == 'b'){
-            val img = view.findViewById(R.id.book_item_roundedImageView) as ImageView
-            img.setImageBitmap(EpubFileReader().getImage(book.reference, context))
+            val bitmap = BitmapFactory.decodeByteArray(book.image, 0, book.image.size)
+            val image = view.findViewById(book_item_roundedImageView) as ImageView
+            image.setImageBitmap(bitmap)
         }
     }
 

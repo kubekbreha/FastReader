@@ -21,6 +21,7 @@ import com.gigamole.infinitecycleviewpager.HorizontalInfiniteCycleViewPager
 import com.kubekbreha.fastreader.R
 import com.kubekbreha.fastreader.settings.SettingsActivity
 import com.kubekbreha.fastreader.theme.util.ThemeUtil
+import com.kubekbreha.fastreader.utils.reader.EpubFileReader
 import com.nbsp.materialfilepicker.MaterialFilePicker
 import com.nbsp.materialfilepicker.ui.FilePickerActivity
 import kotlinx.android.synthetic.main.activity_library.*
@@ -146,8 +147,11 @@ class LibraryActivity : AppCompatActivity(), View.OnClickListener {
             Toast.makeText(this, fileName.reversed(), Toast.LENGTH_SHORT).show()
 
             //insert to database
-            database.insertData(Book(fileName.reversed(), filePath.toString()))
-
+            if(filePath.toString()[filePath.toString().length - 1] == 'b') {
+                database.insertData(Book(fileName.reversed(), filePath.toString(), EpubFileReader().getImage(filePath.toString(), this)!!))
+            }else{
+                database.insertData(Book(fileName.reversed(), filePath.toString(), R))
+            }
             //setup viewPager again because of missing just added book
             setupViewPager()
         }

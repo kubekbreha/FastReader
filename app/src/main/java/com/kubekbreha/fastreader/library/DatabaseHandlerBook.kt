@@ -4,10 +4,8 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 import android.widget.Toast
-import android.graphics.Bitmap
-import android.support.v4.app.NotificationCompat.getExtras
-import java.io.ByteArrayOutputStream
 
 
 val DATABASE_NAME ="FastReaderDatabase"
@@ -23,7 +21,8 @@ class DataBaseHandler(var context: Context) : SQLiteOpenHelper(context,DATABASE_
         val createTable = "CREATE TABLE " + TABLE_NAME +" (" +
                 COL_ID +" INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COL_NAME + " VARCHAR(256)," +
-                COL_REFERENCE +" VARCHAR(256)"
+                COL_REFERENCE +" VARCHAR(256)," +
+                COL_IMAGE + " BLOB)"
 
         db?.execSQL(createTable)
 
@@ -40,6 +39,7 @@ class DataBaseHandler(var context: Context) : SQLiteOpenHelper(context,DATABASE_
         //name
         cv.put(COL_NAME,book.name)
         cv.put(COL_REFERENCE,book.reference)
+        cv.put(COL_IMAGE,book.image)
 
 
         val result = db.insert(TABLE_NAME,null,cv)
@@ -57,11 +57,13 @@ class DataBaseHandler(var context: Context) : SQLiteOpenHelper(context,DATABASE_
         val result = db.rawQuery(query,null)
         if(result.moveToFirst()){
             do {
-                var user = Book()
-                user.id = result.getString(result.getColumnIndex(COL_ID)).toInt()
-                user.name = result.getString(result.getColumnIndex(COL_NAME))
-                user.reference = result.getString(result.getColumnIndex(COL_REFERENCE))
-                list.add(user)
+                var book = Book()
+                book.id = result.getString(result.getColumnIndex(COL_ID)).toInt()
+                book.name = result.getString(result.getColumnIndex(COL_NAME))
+                book.reference = result.getString(result.getColumnIndex(COL_REFERENCE))
+                book.image  = result.getBlob(result.getColumnIndex(COL_IMAGE))
+                Log.e("dubug", book.image.toString())
+                list.add(book)
             }while (result.moveToNext())
         }
 
