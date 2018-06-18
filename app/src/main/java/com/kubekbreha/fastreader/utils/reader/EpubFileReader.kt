@@ -1,22 +1,18 @@
 package com.kubekbreha.fastreader.utils.reader
 
-import android.content.res.AssetManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Log
 import com.github.mertakdut.Reader
 import nl.siegmann.epublib.domain.Author
-import nl.siegmann.epublib.domain.Book
 import nl.siegmann.epublib.epub.EpubReader
 import java.io.File
-import java.io.IOException
 
 class EpubFileReader : com.kubekbreha.fastreader.utils.reader.FileReader {
 
     private var reader : Reader = Reader()
 
     var book = EpubReader()
-
 
     fun getImage(sampleFile :String ): Bitmap? {
         val epubInputStream = File(sampleFile).inputStream()

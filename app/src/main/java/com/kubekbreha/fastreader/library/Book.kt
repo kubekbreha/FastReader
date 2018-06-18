@@ -13,5 +13,5 @@ class Book {
         this.reference = reference
     }
 
-    constructor(){}
+    constructor()
 }
