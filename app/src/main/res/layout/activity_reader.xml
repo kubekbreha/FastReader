@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".reader.ReaderActivity">
+    tools:context=".reader.FastReaderActivity">
 
     <android.support.v4.widget.Space
         android:id="@+id/activity_reader_status_space"

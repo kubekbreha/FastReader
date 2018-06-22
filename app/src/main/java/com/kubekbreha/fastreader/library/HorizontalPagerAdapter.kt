@@ -7,10 +7,9 @@ import android.support.v4.view.PagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.kubekbreha.fastreader.R
 import com.kubekbreha.fastreader.library.util.LibraryPagerUtil.setupItem
-import com.kubekbreha.fastreader.reader.ReaderActivity
+import com.kubekbreha.fastreader.reader.FastReaderActivity
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
 
@@ -36,7 +35,7 @@ class HorizontalPagerAdapter(mContext: Context) : PagerAdapter() {
         val view: View = mLayoutInflater.inflate(R.layout.book_item, container, false)
 
         view.onClick {
-            val intent = Intent(view.context, ReaderActivity::class.java)
+            val intent = Intent(view.context, FastReaderActivity::class.java)
             intent.putExtra("reference", LIBRARY[position].reference)
             view.context.startActivity(intent)
             (view.context as Activity).overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)

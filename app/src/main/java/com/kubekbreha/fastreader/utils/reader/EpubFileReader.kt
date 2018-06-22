@@ -5,16 +5,11 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Log
 import com.github.mertakdut.Reader
-import com.itextpdf.text.pdf.qrcode.BitArray
 import com.kubekbreha.fastreader.R
 import nl.siegmann.epublib.domain.Author
 import nl.siegmann.epublib.epub.EpubReader
-import java.io.File
-import android.support.v4.app.NotificationCompat.getExtras
 import java.io.ByteArrayOutputStream
-import android.support.v4.app.NotificationCompat.getExtras
-
-
+import java.io.File
 
 
 class EpubFileReader : com.kubekbreha.fastreader.utils.reader.FileReader {

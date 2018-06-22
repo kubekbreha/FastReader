@@ -17,7 +17,6 @@ import com.kubekbreha.fastreader.utils.sensey.PinchScaleDetector
 import com.kubekbreha.fastreader.utils.sensey.Sensey
 import com.kubekbreha.fastreader.utils.sensey.TouchTypeDetector
 import kotlinx.android.synthetic.main.activity_reader.*
-import java.io.*
 import android.content.Context
 import android.util.Log
 import android.util.TypedValue
@@ -26,7 +25,7 @@ import com.kubekbreha.fastreader.utils.reader.EpubFileReader
 import com.kubekbreha.fastreader.utils.reader.PdfFileReader
 
 
-class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.OnClickListener {
+class FastReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, View.OnClickListener {
 
     //array of words
     private var testBookArray = arrayOf<String>()
@@ -219,7 +218,7 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
 
     private fun startPinchDetection() {
         Sensey.getInstance()
-                .startPinchScaleDetection(this@ReaderActivity, object : PinchScaleDetector.PinchScaleListener {
+                .startPinchScaleDetection(this@FastReaderActivity, object : PinchScaleDetector.PinchScaleListener {
                     override fun onScale(scaleGestureDetector: ScaleGestureDetector, isScalingOut: Boolean) {
                         if (isScalingOut) {
                             //setResultTextView("Scaling Out")
@@ -240,7 +239,7 @@ class ReaderActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener, Vie
 
     private fun startTouchTypeDetection() {
         Sensey.getInstance()
-                .startTouchTypeDetection(this@ReaderActivity, object : TouchTypeDetector.TouchTypListener {
+                .startTouchTypeDetection(this@FastReaderActivity, object : TouchTypeDetector.TouchTypListener {
                     override fun onDoubleTap() {
                         //setResultTextView("Double Tap")
                         if (running) {
