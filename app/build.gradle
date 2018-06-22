@@ -4,6 +4,62 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'jacoco'
+
+
+ext {
+    coverageSourceDirs = 'src/test/java'
+}
+
+jacoco {
+    toolVersion = "0.7.5.201505241946"
+    reportsDir = file("$buildDir/reports")
+}
+
+task jacocoTestReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
+    group = "Reporting"
+    description = "Generate Jacoco coverage reports for Debug build"
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    classDirectories = fileTree(
+            dir: "$buildDir/intermediates/classes/debug",
+            excludes: ['**/R.class',
+                       '**/R$*.class',
+                       '**/*$ViewBinder*.*',
+                       '**/*$InjectAdapter*.*',
+                       '**/*Injector*.*',
+                       '**/BuildConfig.*',
+                       '**/Manifest*.*',
+                       '**/*Test*.*',
+                       '**/*Activity*.*',
+                       '**/CiMattersApplication*.*',
+                       'android/**/*.*']
+    )
+
+    if (project.hasProperty("teamcity")) {
+        println '##teamcity[jacocoReport dataPath=\'app/build/jacoco/testDebugUnitTest.exec\' includes=\'com.vgaidarji.cimatters.*\' excludes=\'com.vgaidarji.cimatters.test.* **/*R*.* **/*Injector*.* **/*Activity*.* .*R .*CiMattersApplication .*BuildConfig .*Activity .*Test \']'
+    }
+
+    additionalSourceDirs = files(coverageSourceDirs)
+    sourceDirectories = files(coverageSourceDirs)
+    executionData = files("$buildDir/jacoco/testDebugUnitTest.exec")
+
+    // Bit hacky but fixes https://code.google.com/p/android/issues/detail?id=69174.
+    // We iterate through the compiled .class tree and rename $$ to $.
+    doFirst {
+        new File("$buildDir/intermediates/classes/").eachFileRecurse { file ->
+            if (file.name.contains('$$')) {
+                file.renameTo(file.path.replace('$$', '$'))
+            }
+        }
+    }
+}
+
+
 android {
     compileSdkVersion 27
     defaultConfig {
