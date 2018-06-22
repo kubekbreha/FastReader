@@ -89,8 +89,10 @@ repositories {
     maven {
         url "http://dl.bintray.com/dasar/maven"
     }
-
+    jcenter()
 }
+
+
 
 
 
@@ -128,6 +130,8 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+
+    implementation 'io.gitlab.arturbosch.detekt:detekt-api:1.0.0.RC7-2'
 
 
 }
